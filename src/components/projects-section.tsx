@@ -16,6 +16,14 @@ import {
 const projects = [
   {
     id: 1,
+    title: "FintechToronto.com",
+    description: "A centralized platform connecting Toronto's fintech ecosystem through user-centered design.",
+    image: "/vercel.svg",
+    tags: ["UX Research", "UI Design", "Next.js", "Supabase"],
+    link: "/projects/fintechtoronto",
+  },
+  {
+    id: 2,
     title: "E-commerce Redesign",
     description: "A complete redesign of an e-commerce platform focusing on improving user experience and conversion rates.",
     image: "/vercel.svg",
@@ -23,19 +31,11 @@ const projects = [
     link: "#",
   },
   {
-    id: 2,
+    id: 3,
     title: "Banking App",
     description: "A modern banking application with a focus on accessibility and security.",
     image: "/vercel.svg",
     tags: ["UX Research", "UI Design", "NextJS"],
-    link: "#",
-  },
-  {
-    id: 3,
-    title: "Healthcare Dashboard",
-    description: "A comprehensive dashboard for healthcare providers to monitor patient data and metrics.",
-    image: "/vercel.svg",
-    tags: ["UI Design", "Data Visualization", "TypeScript"],
     link: "#",
   },
 ]
