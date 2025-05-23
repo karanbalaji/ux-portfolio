@@ -1,91 +1,137 @@
 "use client"
 
+import { ExternalLink, Github } from "lucide-react"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 
 // Sample project data
 const projects = [
   {
-    id: 1,
     title: "FintechToronto.com",
-    description: "A centralized platform connecting Toronto's fintech ecosystem through user-centered design.",
-    image: "/vercel.svg",
-    tags: ["UX Research", "UI Design", "Next.js", "Supabase"],
+    description: "A comprehensive UX case study for Toronto's fintech ecosystem platform featuring user research, design thinking, and behavioral economics principles.",
+    image: "/api/placeholder/600/400",
+    tags: ["UX Research", "Design Systems", "React", "Next.js"],
     link: "/projects/fintechtoronto",
+    type: "case-study" as const
   },
   {
-    id: 2,
-    title: "E-commerce Redesign",
-    description: "A complete redesign of an e-commerce platform focusing on improving user experience and conversion rates.",
-    image: "/vercel.svg",
-    tags: ["UX Design", "UI Design", "React"],
-    link: "#",
+    title: "E-commerce Dashboard",
+    description: "Modern admin dashboard for e-commerce management with real-time analytics and inventory tracking.",
+    image: "/api/placeholder/600/400",
+    tags: ["React", "TypeScript", "Chart.js", "Tailwind"],
+    github: "https://github.com",
+    demo: "https://demo.com",
+    type: "project" as const
   },
   {
-    id: 3,
-    title: "Banking App",
-    description: "A modern banking application with a focus on accessibility and security.",
-    image: "/vercel.svg",
-    tags: ["UX Research", "UI Design", "NextJS"],
-    link: "#",
-  },
+    title: "Design System Library",
+    description: "Comprehensive component library built with React and documented with Storybook for consistent UI development.",
+    image: "/api/placeholder/600/400",
+    tags: ["React", "Storybook", "CSS-in-JS", "Documentation"],
+    github: "https://github.com",
+    demo: "https://demo.com",
+    type: "project" as const
+  }
 ]
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-muted/50 backdrop-blur-sm border-b border-muted">
+    <section id="projects" className="py-20">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Featured Projects</h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-[600px]">
-            A selection of my recent work in UX engineering and design.
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Featured Projects</h2>
+          <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+            A showcase of my recent work in UX design and frontend development.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden flex flex-col h-full transition-all hover:shadow-lg border border-muted bg-background/70 backdrop-blur-sm">
-              <div className="relative h-[180px] md:h-[200px] w-full bg-primary/5">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Placeholder for project image */}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {projects.map((project, index) => (
+            <CardContainer key={index} className="inter-var" containerClassName="py-8">
+              <CardBody className="bg-grey-50 dark:bg-grey-900 relative group/card border border-grey-200 dark:border-grey-700 w-auto sm:w-[350px] h-auto rounded-xl p-6 shadow-sm">
+                <CardItem
+                  translateZ="50"
+                  className="text-xl font-bold text-grey-900 dark:text-grey-50"
+                >
+                  {project.title}
+                </CardItem>
+                
+                <CardItem
+                  as="p"
+                  translateZ="60"
+                  className="text-grey-600 dark:text-grey-300 text-sm max-w-sm mt-2"
+                >
+                  {project.description}
+                </CardItem>
+                
+                <CardItem translateZ="100" className="w-full mt-4">
                   <Image
                     src={project.image}
+                    height="1000"
+                    width="1000"
+                    className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
                     alt={project.title}
-                    fill
-                    className="object-contain p-6 dark:invert"
                   />
+                </CardItem>
+                
+                <CardItem
+                  translateZ="50"
+                  className="flex flex-wrap gap-2 mt-4"
+                >
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </CardItem>
+                
+                <div className="flex justify-between items-center mt-6">
+                  {project.type === "case-study" ? (
+                    <CardItem
+                      translateZ={20}
+                      as={Link}
+                      href={project.link}
+                      className="flex-1"
+                    >
+                      <Button variant="default" size="sm" className="w-full gap-2">
+                        View Case Study <ExternalLink className="h-3 w-3" />
+                      </Button>
+                    </CardItem>
+                  ) : (
+                    <>
+                      <CardItem
+                        translateZ={20}
+                        as={Link}
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 mr-2"
+                      >
+                        <Button variant="default" size="sm" className="w-full gap-2">
+                          Live Demo <ExternalLink className="h-3 w-3" />
+                        </Button>
+                      </CardItem>
+                      <CardItem
+                        translateZ={20}
+                        as={Link}
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="outline" size="sm" className="gap-2">
+                          <Github className="h-3 w-3" />
+                        </Button>
+                      </CardItem>
+                    </>
+                  )}
                 </div>
-              </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span 
-                    key={tag} 
-                    className="inline-block px-3 py-1 bg-muted/60 backdrop-blur-sm text-foreground/80 text-xs rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </CardContent>
-              <CardFooter className="mt-auto">
-                <Button variant="outline" className="w-full gap-2 bg-background/70 backdrop-blur-sm border-muted hover:bg-primary/5" asChild>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    View Project <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                </Button>
-              </CardFooter>
-            </Card>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </div>
