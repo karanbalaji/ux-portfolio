@@ -12,6 +12,11 @@ import Features from "./components/features"
 import UXPrinciples from "./components/ux-principles"
 import SocialProof from "./components/social-proof"
 import TechStack from "./components/tech-stack"
+import ReadingProgress from "./components/reading-progress"
+import BackToTop from "./components/back-to-top"
+import QuickFacts from "./components/quick-facts"
+import SectionDivider from "./components/section-divider"
+import Breadcrumbs from "./components/breadcrumbs"
 
 // Table of contents data for mobile component
 const tocData = [
@@ -95,6 +100,8 @@ export const metadata: Metadata = {
 export default function FintechTorontoPage() {
   return (
     <div className="min-h-screen bg-background">
+      <ReadingProgress />
+      
       <ProjectNavbar 
         projectTitle="FintechToronto.com"
         projectUrl="https://fintechtoronto.com"
@@ -108,18 +115,40 @@ export default function FintechTorontoPage() {
       <MobileTableOfContents items={tocData} />
       
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto py-12">
+        {/* Breadcrumbs */}
+        <Breadcrumbs />
+        
+        {/* Quick Facts */}
+        <div className="mb-12">
+          <QuickFacts />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10">
           <div className="hidden lg:block sticky top-20 self-start">
             <TableOfContents />
           </div>
-          <div className="space-y-16">
+          <div className="space-y-8">
             <ExecutiveSummary />
+            <SectionDivider variant="gradient" />
+            
             <ProblemStatement />
+            <SectionDivider variant="dots" />
+            
             <DesignThinking />
+            <SectionDivider variant="gradient" />
+            
             <UserFlows />
+            <SectionDivider variant="dots" />
+            
             <Features />
+            <SectionDivider variant="gradient" />
+            
             <UXPrinciples />
+            <SectionDivider variant="dots" />
+            
             <SocialProof />
+            <SectionDivider variant="gradient" />
+            
             <TechStack />
           </div>
         </div>
@@ -141,6 +170,8 @@ export default function FintechTorontoPage() {
           description: "Patient management system for healthcare providers"
         }}
       />
+      
+      <BackToTop />
     </div>
   )
 } 
