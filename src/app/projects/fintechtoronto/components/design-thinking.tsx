@@ -1,14 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { Maximize2, X } from "lucide-react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import {
   Table,
   TableBody,
@@ -99,7 +92,7 @@ graph TD
         isMounted = false
         clearTimeout(timer)
       }
-    }, [])
+    }, [overviewDiagram])
 
     return (
       <div className="bg-white dark:bg-grey-900 p-6 rounded-lg border border-tertiary/20 min-h-[300px] flex items-center justify-center">
@@ -248,8 +241,6 @@ graph TD
   )
 }
 
-
-
 export default function DesignThinking() {
   return (
     <section id="design-thinking" className="scroll-mt-24">
@@ -266,7 +257,7 @@ export default function DesignThinking() {
               <li><span className="font-medium">Contextual inquiry:</span> Observing users navigate existing information sources</li>
               <li><span className="font-medium">Competitive analysis:</span> Evaluating 14 fintech community platforms globally</li>
               <li><span className="font-medium">Surveys:</span> 215 responses from Toronto fintech community members</li>
-              <li><span className="font-medium">Heuristic evaluation:</span> Analysis of existing solutions against Nielsen's usability heuristics</li>
+              <li><span className="font-medium">Heuristic evaluation:</span> Analysis of existing solutions against Nielsen&apos;s usability heuristics</li>
             </ul>
             
             <div className="mt-6">
@@ -282,10 +273,10 @@ export default function DesignThinking() {
             <div className="mt-6">
               <h4 className="text-lg font-medium mb-3 text-foreground">Jobs-to-be-Done Framework:</h4>
               <ol className="list-decimal pl-5 space-y-2">
-                <li>"Help me stay informed about local fintech developments without excessive research time"</li>
-                <li>"Allow me to share my expertise and build my professional profile"</li>
-                <li>"Connect me with relevant community members and opportunities"</li>
-                <li>"Keep me updated on events that match my specific interests"</li>
+                <li>&ldquo;Help me stay informed about local fintech developments without excessive research time&rdquo;</li>
+                <li>&ldquo;Allow me to share my expertise and build my professional profile&rdquo;</li>
+                <li>&ldquo;Connect me with relevant community members and opportunities&rdquo;</li>
+                <li>&ldquo;Keep me updated on events that match my specific interests&rdquo;</li>
               </ol>
             </div>
           </div>

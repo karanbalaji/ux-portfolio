@@ -3,7 +3,6 @@
 import { ArrowRight, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BackgroundBeams } from "@/components/ui/background-beams"
-import { cn } from "@/lib/utils"
 
 export function HeroSection() {
   const handleScroll = (id: string) => {
@@ -23,7 +22,7 @@ export function HeroSection() {
           UX Engineer & Designer
         </div>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-          <span className="block text-grey-900 dark:text-grey-50">Hi, I'm Karan</span>
+          <span className="block text-grey-900 dark:text-grey-50">Hi, I&apos;m Karan</span>
           <span className="text-primary block mt-2">UX Engineer & Designer</span>
         </h1>
         <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px] mb-10">

@@ -44,7 +44,7 @@ export function ContactSection() {
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Get In Touch</h2>
           <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
-            Have a project in mind? Let's discuss how we can work together to create something amazing.
+            Have a project in mind? Let&apos;s discuss how we can work together to create something amazing.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export function ContactSection() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 flex items-center gap-3">
                 <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                <span className="text-green-800 dark:text-green-200">Message sent successfully! I'll get back to you soon.</span>
+                <span className="text-green-800 dark:text-green-200">Message sent successfully! I&apos;ll get back to you soon.</span>
               </div>
             )}
 
@@ -106,7 +106,7 @@ export function ContactSection() {
                   id="subject"
                   name="subject"
                   type="text"
-                  placeholder="What's this about?"
+                  placeholder="What&apos;s this about?"
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
@@ -149,10 +149,10 @@ export function ContactSection() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-semibold mb-6 text-grey-900 dark:text-grey-50">Let's Connect</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-grey-900 dark:text-grey-50">Let&apos;s Connect</h3>
               <p className="text-grey-600 dark:text-grey-300 mb-8 leading-relaxed">
-                I'm always excited to discuss new opportunities, collaborate on interesting projects, 
-                or simply chat about design and technology. Don't hesitate to reach out!
+                I&apos;m always excited to discuss new opportunities, collaborate on interesting projects, 
+                or simply chat about design and technology. Don&apos;t hesitate to reach out!
               </p>
             </div>
 

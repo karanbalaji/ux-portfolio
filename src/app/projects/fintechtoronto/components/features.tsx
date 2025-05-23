@@ -142,7 +142,7 @@ export default function Features() {
           <div className="text-grey-600 dark:text-grey-50 space-y-4">
             <p>
               Our accessibility implementation follows best practices from the WebAIM Million report (2024), 
-              which found that 96.8% of the top million websites had WCAG 2.1 failures. We've focused on addressing 
+              which found that 96.8% of the top million websites had WCAG 2.1 failures. We&apos;ve focused on addressing 
               the most common accessibility issues:
             </p>
             
@@ -151,13 +151,13 @@ export default function Features() {
               <li><span className="font-medium text-grey-800 dark:text-grey-200">Keyboard Navigation:</span> Ensuring all interactive elements are accessible via keyboard</li>
               <li><span className="font-medium text-grey-800 dark:text-grey-200">Screen Reader Compatibility:</span> Testing with NVDA, JAWS, and VoiceOver</li>
               <li><span className="font-medium text-grey-800 dark:text-grey-200">Semantic HTML:</span> Using proper heading structure and landmark regions</li>
-              <li><span className="font-medium text-grey-800 dark:text-grey-200">ARIA Implementation:</span> Following the "ARIA Authoring Practices Guide" for complex interactions</li>
+              <li><span className="font-medium text-grey-800 dark:text-grey-200">ARIA Implementation:</span> Following the &ldquo;ARIA Authoring Practices Guide&rdquo; for complex interactions</li>
             </ul>
             
             <p className="mt-4">
               The platform achieved a 95% accessibility score in Google Lighthouse audits, placing it in the 
               top 5% of financial services websites for accessibility compliance according to the 
-              Deque Systems "State of Digital Accessibility" report (2024).
+              Deque Systems &ldquo;State of Digital Accessibility&rdquo; report (2024).
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default function Features() {
           <div className="text-grey-600 dark:text-grey-50 space-y-4">
             <p>
               FintechToronto.com was built with a mobile-first philosophy, driven by data from the 
-              "Global Mobile Consumer Survey" (Deloitte, 2024) showing that 72% of fintech users access 
+              &ldquo;Global Mobile Consumer Survey&rdquo; (Deloitte, 2024) showing that 72% of fintech users access 
               services primarily via mobile devices.
             </p>
             

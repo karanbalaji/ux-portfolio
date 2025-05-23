@@ -4,7 +4,7 @@ export default function ExecutiveSummary() {
       <h2 className="text-3xl font-bold mb-6 text-grey-900 dark:text-grey-50">1. Executive Summary</h2>
       <div className="space-y-6 text-grey-600 dark:text-grey-50">
         <p className="text-lg">
-          FintechToronto.com addresses a critical gap in Toronto's fintech ecosystem by providing a centralized, 
+          FintechToronto.com addresses a critical gap in Toronto&apos;s fintech ecosystem by providing a centralized, 
           user-friendly platform that connects professionals, entrepreneurs, investors, and enthusiasts. 
           This case study documents our user-centered design process, from initial research through implementation 
           and continuous improvement.

@@ -22,7 +22,7 @@ export default function FintechTorontoHero() {
             <span className="text-tertiary">FintechToronto.com</span>
           </h1>
           <p className="text-xl md:text-2xl text-grey-600 dark:text-grey-50 max-w-3xl mt-4">
-            A centralized platform connecting Toronto's fintech ecosystem through user-centered design.
+            A centralized platform connecting Toronto&apos;s fintech ecosystem through user-centered design.
           </p>
         </div>
         

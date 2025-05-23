@@ -49,8 +49,8 @@ export default function SocialProof() {
                       Fintech + AI Discussion Meetup
                     </h3>
                     <p className="text-grey-700 dark:text-grey-50 leading-relaxed">
-                      Organized and facilitated a highly successful discussion-style meetup at Next AI's office, 
-                      bringing together Toronto's fintech ecosystem to explore AI innovations. This community 
+                      Organized and facilitated a highly successful discussion-style meetup at Next AI&apos;s office, 
+                      bringing together Toronto&apos;s fintech ecosystem to explore AI innovations. This community 
                       engagement directly contributed to significant organic growth for fintechtoronto.com.
                     </p>
                   </div>

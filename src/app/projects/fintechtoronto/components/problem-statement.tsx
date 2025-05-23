@@ -14,7 +14,7 @@ export default function ProblemStatement() {
       <div className="space-y-8">
         <div className="text-grey-600 dark:text-grey-50">
           <p className="text-lg mb-6">
-            Toronto's fintech community lacked a centralized, user-friendly platform for sharing news, events, 
+            Toronto&apos;s fintech community lacked a centralized, user-friendly platform for sharing news, events, 
             and resources. Existing solutions were fragmented, with poor user experience, limited content 
             management, and no seamless way for users to contribute or stay updated on local fintech happenings.
           </p>

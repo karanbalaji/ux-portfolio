@@ -240,7 +240,7 @@ export function ProjectFooter({ currentProject, nextProject, previousProject }: 
               Interested in working together?
             </h3>
             <p className="text-muted-foreground">
-              Let's discuss how I can help bring your next project to life.
+              Let&apos;s discuss how I can help bring your next project to life.
             </p>
             <Link href="/#contact">
               <Button size="lg" className="mt-2">

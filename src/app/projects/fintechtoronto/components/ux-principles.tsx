@@ -12,7 +12,7 @@ export default function UXPrinciples() {
       
       <div className="space-y-12">
         <div className="space-y-6">
-          <h3 className="text-2xl font-semibold text-grey-900 dark:text-grey-50">6.1 Nielsen's Heuristics Implementation</h3>
+          <h3 className="text-2xl font-semibold text-grey-900 dark:text-grey-50">6.1 Nielsen&apos;s Heuristics Implementation</h3>
           
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="visibility">
@@ -67,12 +67,12 @@ export default function UXPrinciples() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">
                 <h4 className="text-lg font-medium mb-3 text-grey-900 dark:text-grey-50">Social Proof</h4>
-                <p className="text-grey-600 dark:text-grey-50">Displaying user counts and engagement metrics on events and content helps users make decisions based on others' actions. Event pages show attendee profiles and testimonials, while articles display view counts and comment numbers.</p>
+                <p className="text-grey-600 dark:text-grey-50">Displaying user counts and engagement metrics on events and content helps users make decisions based on others&apos; actions. Event pages show attendee profiles and testimonials, while articles display view counts and comment numbers.</p>
               </div>
               
               <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">
                 <h4 className="text-lg font-medium mb-3 text-grey-900 dark:text-grey-50">Scarcity</h4>
-                <p className="text-grey-600 dark:text-grey-50">Event listings highlight limited-capacity events with "Only X spots left" indicators, creating urgency without false pressure. Registration pages show real-time capacity updates to encourage timely decisions.</p>
+                <p className="text-grey-600 dark:text-grey-50">Event listings highlight limited-capacity events with &ldquo;Only X spots left&rdquo; indicators, creating urgency without false pressure. Registration pages show real-time capacity updates to encourage timely decisions.</p>
               </div>
               
               <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">
@@ -82,7 +82,7 @@ export default function UXPrinciples() {
               
               <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">
                 <h4 className="text-lg font-medium mb-3 text-grey-900 dark:text-grey-50">Endowment Effect</h4>
-                <p className="text-grey-600 dark:text-grey-50">Users can create personalized content "collections" for later reference, increasing platform value through ownership. Content contributions receive prominent attribution, building psychological ownership.</p>
+                <p className="text-grey-600 dark:text-grey-50">Users can create personalized content &ldquo;collections&rdquo; for later reference, increasing platform value through ownership. Content contributions receive prominent attribution, building psychological ownership.</p>
               </div>
               
               <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">

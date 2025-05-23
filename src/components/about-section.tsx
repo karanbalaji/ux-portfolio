@@ -1,8 +1,6 @@
 "use client"
 
-import Image from "next/image"
 import { Download, Code, Layout, Palette, Award } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
 
@@ -29,7 +27,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-grey-200">
-              Hi there! I'm a UX Engineer with over 5 years of experience bridging the gap between design and development. 
+              Hi there! I&apos;m a UX Engineer with over 5 years of experience bridging the gap between design and development. 
               I specialize in creating design systems, interactive prototypes, and implementing pixel-perfect UI components.
             </p>
             <p className="text-lg mb-8 leading-relaxed text-grey-700 dark:text-grey-200">
