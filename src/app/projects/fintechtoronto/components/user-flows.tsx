@@ -561,7 +561,7 @@ export default function UserFlows() {
                       {flow.sections.map((section, idx) => (
                         <div key={idx} className="space-y-3">
                           <h4 className="text-lg font-medium text-grey-900 dark:text-grey-50">{section.title}</h4>
-                          <ul className="list-disc pl-5 space-y-2 text-grey-600 dark:text-grey-300">
+                          <ul className="list-disc pl-5 space-y-2 text-grey-600 dark:text-grey-50">
                             {section.content.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}

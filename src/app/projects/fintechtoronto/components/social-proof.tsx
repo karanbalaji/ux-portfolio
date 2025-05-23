@@ -12,7 +12,7 @@ export default function SocialProof() {
           <h2 className="text-3xl md:text-4xl font-bold text-grey-900 dark:text-grey-50">
             Social Proof & Community Impact
           </h2>
-          <p className="text-lg text-grey-600 dark:text-grey-300 max-w-3xl mx-auto">
+          <p className="text-lg text-grey-600 dark:text-grey-50 max-w-3xl mx-auto">
             Demonstrating real-world impact through community engagement and innovative design engineering
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function SocialProof() {
                       priority
                     />
                   </div>
-                  <p className="text-sm text-grey-700 dark:text-grey-300 text-center italic font-medium">
+                  <p className="text-sm text-grey-700 dark:text-grey-50 text-center italic font-medium">
                     Leading discussion-style meetup at Next AI office for the Fintech + AI community event
                   </p>
                 </div>
@@ -48,7 +48,7 @@ export default function SocialProof() {
                     <h3 className="text-2xl font-bold text-grey-900 dark:text-grey-50">
                       Fintech + AI Discussion Meetup
                     </h3>
-                    <p className="text-grey-700 dark:text-grey-200 leading-relaxed">
+                    <p className="text-grey-700 dark:text-grey-50 leading-relaxed">
                       Organized and facilitated a highly successful discussion-style meetup at Next AI's office, 
                       bringing together Toronto's fintech ecosystem to explore AI innovations. This community 
                       engagement directly contributed to significant organic growth for fintechtoronto.com.
@@ -63,7 +63,7 @@ export default function SocialProof() {
                         <span className="text-sm font-medium">Attendance</span>
                       </div>
                       <div className="text-2xl font-bold text-grey-900 dark:text-grey-50">106+</div>
-                      <div className="text-sm text-grey-600 dark:text-grey-300">RSVPs & Attendees</div>
+                      <div className="text-sm text-grey-600 dark:text-grey-50">RSVPs & Attendees</div>
                     </div>
                     <div className="bg-white dark:bg-grey-800 p-4 rounded-lg border border-grey-200 dark:border-grey-600 shadow-sm">
                       <div className="flex items-center gap-2 text-primary mb-2">
@@ -71,14 +71,14 @@ export default function SocialProof() {
                         <span className="text-sm font-medium">Event Type</span>
                       </div>
                       <div className="text-lg font-bold text-grey-900 dark:text-grey-50">In-Person</div>
-                      <div className="text-sm text-grey-600 dark:text-grey-300">Discussion Groups</div>
+                      <div className="text-sm text-grey-600 dark:text-grey-50">Discussion Groups</div>
                     </div>
                   </div>
 
                   {/* Event Highlights */}
                   <div className="space-y-3">
                     <h4 className="font-semibold text-grey-900 dark:text-grey-50">Key Event Highlights:</h4>
-                    <ul className="space-y-2 text-grey-700 dark:text-grey-200">
+                    <ul className="space-y-2 text-grey-700 dark:text-grey-50">
                       <li className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                         <span>Co-organized with The GenAI Collective team and co-hosted with financial engineer Jacqline Geng</span>
@@ -144,7 +144,7 @@ export default function SocialProof() {
                     priority
                   />
                 </div>
-                <p className="text-sm text-grey-700 dark:text-grey-300 text-center italic font-medium">
+                <p className="text-sm text-grey-700 dark:text-grey-50 text-center italic font-medium">
                   Presenting design engineering skills and fintechtoronto.com at Shopify Builder Sundays
                 </p>
               </div>
@@ -159,7 +159,7 @@ export default function SocialProof() {
                   <h3 className="text-2xl font-bold text-grey-900 dark:text-grey-50">
                     Shopify Builder Sundays Demo
                   </h3>
-                  <p className="text-grey-700 dark:text-grey-200 leading-relaxed">
+                  <p className="text-grey-700 dark:text-grey-50 leading-relaxed">
                     Presented fintechtoronto.com at Shopify Builder Sundays, showcasing rapid design engineering 
                     using modern tools like ShadCN, MagicUI, and Cursor. The demo highlighted innovative AI-assisted 
                     development workflows and modern mobile-centric design principles.
@@ -174,7 +174,7 @@ export default function SocialProof() {
                       <span className="text-sm font-medium">Design Focus</span>
                     </div>
                     <div className="text-lg font-bold text-grey-900 dark:text-grey-50">Mobile-First</div>
-                    <div className="text-sm text-grey-600 dark:text-grey-300">Modern & Responsive</div>
+                    <div className="text-sm text-grey-600 dark:text-grey-50">Modern & Responsive</div>
                   </div>
                   <div className="bg-white dark:bg-grey-800 p-4 rounded-lg border border-grey-200 dark:border-grey-600 shadow-sm">
                     <div className="flex items-center gap-2 text-grey-900 dark:text-grey-100 mb-2">
@@ -182,14 +182,14 @@ export default function SocialProof() {
                       <span className="text-sm font-medium">Development</span>
                     </div>
                     <div className="text-lg font-bold text-grey-900 dark:text-grey-50">AI-Assisted</div>
-                    <div className="text-sm text-grey-600 dark:text-grey-300">Rapid Prototyping</div>
+                    <div className="text-sm text-grey-600 dark:text-grey-50">Rapid Prototyping</div>
                   </div>
                 </div>
 
                 {/* Demo Highlights */}
                 <div className="space-y-3">
                   <h4 className="font-semibold text-grey-900 dark:text-grey-50">Key Demo Highlights:</h4>
-                  <ul className="space-y-2 text-grey-700 dark:text-grey-200">
+                  <ul className="space-y-2 text-grey-700 dark:text-grey-50">
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 bg-secondary rounded-full mt-2 flex-shrink-0"></div>
                       <span>Showcased full-stack development using ShadCN UI + MagicUI components</span>
@@ -234,7 +234,7 @@ export default function SocialProof() {
             <h3 className="text-2xl font-bold text-grey-900 dark:text-grey-50">
               Community Engagement Impact
             </h3>
-            <p className="text-grey-700 dark:text-grey-200 max-w-2xl mx-auto">
+            <p className="text-grey-700 dark:text-grey-50 max-w-2xl mx-auto">
               These events exemplify how UX design extends beyond digital interfaces to creating 
               meaningful community experiences and showcasing innovative development approaches.
             </p>
@@ -244,22 +244,22 @@ export default function SocialProof() {
             <div className="text-center space-y-2 p-4 bg-white/50 dark:bg-grey-800/50 rounded-lg">
               <div className="text-2xl md:text-3xl font-bold text-primary">40%+</div>
               <div className="text-xs md:text-sm font-medium text-grey-900 dark:text-grey-50">Organic Traffic Boost</div>
-              <div className="text-xs text-grey-600 dark:text-grey-300">Post-event growth</div>
+              <div className="text-xs text-grey-600 dark:text-grey-50">Post-event growth</div>
             </div>
             <div className="text-center space-y-2 p-4 bg-white/50 dark:bg-grey-800/50 rounded-lg">
               <div className="text-2xl md:text-3xl font-bold text-primary">106</div>
               <div className="text-xs md:text-sm font-medium text-grey-900 dark:text-grey-50">Community Members</div>
-              <div className="text-xs text-grey-600 dark:text-grey-300">Direct engagement</div>
+              <div className="text-xs text-grey-600 dark:text-grey-50">Direct engagement</div>
             </div>
             <div className="text-center space-y-2 p-4 bg-white/50 dark:bg-grey-800/50 rounded-lg">
               <div className="text-2xl md:text-3xl font-bold text-grey-900 dark:text-grey-100">2</div>
               <div className="text-xs md:text-sm font-medium text-grey-900 dark:text-grey-50">Major Showcases</div>
-              <div className="text-xs text-grey-600 dark:text-grey-300">Community events</div>
+              <div className="text-xs text-grey-600 dark:text-grey-50">Community events</div>
             </div>
             <div className="text-center space-y-2 p-4 bg-white/50 dark:bg-grey-800/50 rounded-lg">
               <div className="text-2xl md:text-3xl font-bold text-grey-900 dark:text-grey-100">25%+</div>
               <div className="text-xs md:text-sm font-medium text-grey-900 dark:text-grey-50">Sign-up Increase</div>
-              <div className="text-xs text-grey-600 dark:text-grey-300">From demo showcase</div>
+              <div className="text-xs text-grey-600 dark:text-grey-50">From demo showcase</div>
             </div>
           </div>
         </div>

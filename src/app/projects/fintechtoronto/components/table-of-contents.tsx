@@ -181,7 +181,7 @@ export default function TableOfContents() {
                   className={`text-left flex-1 text-sm transition-colors hover:text-tertiary ${
                     activeSection === item.id 
                       ? 'text-tertiary font-semibold bg-tertiary/10 px-2 py-1 rounded' 
-                      : 'text-grey-700 dark:text-grey-300'
+                      : 'text-grey-700 dark:text-grey-50'
                   }`}
                 >
                   {item.label}
@@ -198,7 +198,7 @@ export default function TableOfContents() {
                         className={`text-left w-full text-xs transition-colors hover:text-tertiary py-1 px-2 rounded ${
                           activeSection === subsection.id 
                             ? 'text-tertiary font-semibold bg-tertiary/15 border-l-2 border-tertiary' 
-                            : 'text-grey-600 dark:text-grey-400 hover:bg-grey-100 dark:hover:bg-grey-700'
+                            : 'text-grey-600 dark:text-grey-300 hover:bg-grey-100 dark:hover:bg-grey-700'
                         }`}
                       >
                         {subsection.label}

@@ -2,7 +2,7 @@ export default function ExecutiveSummary() {
   return (
     <section id="executive-summary" className="scroll-mt-24">
       <h2 className="text-3xl font-bold mb-6 text-grey-900 dark:text-grey-50">1. Executive Summary</h2>
-      <div className="space-y-6 text-grey-600 dark:text-grey-300">
+      <div className="space-y-6 text-grey-600 dark:text-grey-50">
         <p className="text-lg">
           FintechToronto.com addresses a critical gap in Toronto's fintech ecosystem by providing a centralized, 
           user-friendly platform that connects professionals, entrepreneurs, investors, and enthusiasts. 

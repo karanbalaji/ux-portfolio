@@ -10,7 +10,7 @@ export default function Breadcrumbs() {
 
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex items-center space-x-2 text-sm text-grey-600 dark:text-grey-400">
+      <ol className="flex items-center space-x-2 text-sm text-grey-600 dark:text-grey-100">
         {breadcrumbs.map((item, index) => {
           const isLast = index === breadcrumbs.length - 1
           const IconComponent = item.icon
@@ -18,7 +18,7 @@ export default function Breadcrumbs() {
           return (
             <li key={item.href} className="flex items-center">
               {index > 0 && (
-                <ChevronRight className="h-4 w-4 mx-2 text-grey-400 dark:text-grey-500" />
+                <ChevronRight className="h-4 w-4 mx-2 text-grey-400 dark:text-grey-200" />
               )}
               
               {isLast ? (

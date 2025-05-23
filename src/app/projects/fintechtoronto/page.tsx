@@ -132,19 +132,19 @@ export default function FintechTorontoPage() {
             <SectionDivider variant="gradient" />
             
             <ProblemStatement />
-            <SectionDivider variant="dots" />
+            <SectionDivider variant="gradient" />
             
             <DesignThinking />
             <SectionDivider variant="gradient" />
             
             <UserFlows />
-            <SectionDivider variant="dots" />
-            
-            <Features />
             <SectionDivider variant="gradient" />
             
-            <UXPrinciples />
+            <Features />
             <SectionDivider variant="dots" />
+            
+            <UXPrinciples />
+            <SectionDivider variant="gradient" />
             
             <SocialProof />
             <SectionDivider variant="gradient" />

@@ -7,7 +7,7 @@ export default function TechStack() {
         <div className="space-y-6">
           <h3 className="text-2xl font-semibold text-grey-900 dark:text-grey-50">7.1 Frontend Architecture</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-grey-600 dark:text-grey-300">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-grey-600 dark:text-grey-50">
             <div className="space-y-4">
               <div>
                 <h4 className="text-lg font-medium text-grey-900 dark:text-grey-50">Core Technologies</h4>
@@ -75,7 +75,7 @@ export default function TechStack() {
           </div>
         </div>
         
-        <div className="space-y-6 text-grey-600 dark:text-grey-300">
+        <div className="space-y-6 text-grey-600 dark:text-grey-50">
           <h3 className="text-2xl font-semibold text-grey-900 dark:text-grey-50">7.2 Backend & Infrastructure</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
