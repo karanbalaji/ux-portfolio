@@ -36,14 +36,45 @@ export default function QuickFacts() {
   return (
     <Card className="border border-grey-200 dark:border-grey-700 bg-gradient-to-br from-white via-grey-50/50 to-primary/5 dark:from-grey-900 dark:via-grey-800/50 dark:to-primary/10 shadow-lg">
       <CardContent className="p-8">
-        <div className="text-center mb-8">
-          <h3 className="text-xl font-bold text-grey-900 dark:text-grey-50 mb-2">
+        <div className="text-center mb-6 lg:mb-8">
+          <h3 className="text-lg lg:text-xl font-bold text-grey-900 dark:text-grey-50 mb-2">
             Project Overview
           </h3>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+          <div className="w-12 lg:w-16 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Mobile Layout - Compact Horizontal */}
+        <div className="block lg:hidden space-y-3">
+          {facts.map((fact, index) => {
+            const IconComponent = fact.icon
+            return (
+              <div key={index} className="bg-white dark:bg-grey-800 p-4 rounded-lg border border-grey-200 dark:border-grey-600 shadow-sm">
+                <div className="flex items-center gap-4">
+                  <div className={`p-3 rounded-xl ${fact.color} flex-shrink-0`}>
+                    <IconComponent className="h-5 w-5" />
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-baseline justify-between gap-2">
+                      <div className="text-lg font-bold text-grey-900 dark:text-grey-50 truncate">
+                        {fact.value}
+                      </div>
+                      <div className="text-xs font-medium text-grey-700 dark:text-grey-200 uppercase tracking-wide flex-shrink-0">
+                        {fact.label}
+                      </div>
+                    </div>
+                    <div className="text-xs text-grey-500 dark:text-grey-400 mt-1">
+                      {fact.description}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Desktop Layout - Original Cards */}
+        <div className="hidden lg:grid grid-cols-4 gap-6">
           {facts.map((fact, index) => {
             const IconComponent = fact.icon
             return (
@@ -72,8 +103,8 @@ export default function QuickFacts() {
           })}
         </div>
         
-        <div className="mt-8 pt-6 border-t border-grey-200 dark:border-grey-600">
-          <div className="flex flex-wrap justify-center gap-4 text-xs text-grey-500 dark:text-grey-400">
+        <div className="mt-6 lg:mt-8 pt-4 lg:pt-6 border-t border-grey-200 dark:border-grey-600">
+          <div className="flex flex-wrap justify-center gap-3 lg:gap-4 text-xs text-grey-500 dark:text-grey-400">
             <span className="flex items-center gap-1">
               <div className="w-2 h-2 bg-primary rounded-full"></div>
               User-Centered Design
