@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
+  // Removed output: 'export' to enable API routes on Vercel
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

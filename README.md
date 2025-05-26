@@ -36,8 +36,8 @@ A modern, responsive portfolio website showcasing UX design expertise, projects,
 - **Package Manager**: npm/pnpm
 
 ### Deployment
-- **Platform**: Static export optimized for various hosting platforms
-- **Images**: Unoptimized for static hosting compatibility
+- **Platform**: Vercel (with API routes support)
+- **Images**: Optimized with Next.js Image component
 
 ## 🚀 Getting Started
 
@@ -133,14 +133,16 @@ Professional contact form with validation and accessibility features
 ## 🔧 Configuration
 
 ### Environment Setup
-The project uses static export configuration for broad hosting compatibility:
+The project is configured for Vercel deployment with API routes support:
 
 ```typescript
 // next.config.ts
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  images: { unoptimized: true }
+  images: {
+    remotePatterns: [
+      // External image domains
+    ]
+  }
 }
 ```
 
@@ -152,20 +154,14 @@ Automated RSS feed processing runs before build to generate static blog content.
 
 ## 🚀 Deployment
 
-This project is configured for static export and can be deployed to:
-
-- **Vercel** (recommended)
-- **Netlify** 
-- **GitHub Pages**
-- **AWS S3 + CloudFront**
-- Any static hosting provider
+This project is optimized for **Vercel** deployment with full API routes support for the contact form functionality.
 
 ### Build for Production
 ```bash
 npm run build
 ```
 
-The `out/` directory contains the static export ready for deployment.
+The project will be built and optimized for Vercel's serverless functions.
 
 ## 📱 Responsive Design
 
