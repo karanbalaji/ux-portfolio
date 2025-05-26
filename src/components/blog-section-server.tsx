@@ -1,13 +1,13 @@
 import { Calendar, Clock, ExternalLink } from "lucide-react"
 import { HoverShadow } from "@/components/ui/hover-shadow"
 import { Button } from "@/components/ui/button"
-import { fetchBlogPosts } from "@/lib/blog-service"
+import { getLatestBlogPosts, type BlogPost } from "@/lib/blog-service"
 
 export async function BlogSectionServer() {
-  let blogPosts
+  let blogPosts: BlogPost[]
   
   try {
-    blogPosts = await fetchBlogPosts()
+    blogPosts = await getLatestBlogPosts(6) // Get latest 6 posts for server-side rendering
   } catch (error) {
     console.error('Error loading blog posts:', error)
     // Fallback to static content if RSS fails

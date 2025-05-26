@@ -1,28 +1,31 @@
 "use client"
 
-import { Calendar, Clock, ExternalLink } from "lucide-react"
+import { Calendar, Clock, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HoverShadow } from "@/components/ui/hover-shadow"
-import { type BlogPost } from "@/lib/blog-service"
+import { type PaginatedBlogPosts } from "@/lib/blog-service"
 import { useEffect, useState } from "react"
 
 export function BlogSection() {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [blogData, setBlogData] = useState<PaginatedBlogPosts | null>(null)
   const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  useEffect(() => {
-    const loadBlogPosts = async () => {
-      try {
-        const response = await fetch('/api/blog')
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog posts')
-        }
-        const posts = await response.json()
-        setBlogPosts(posts)
-      } catch (error) {
-        console.error('Error loading blog posts:', error)
-        // Use fallback data if API fails
-        setBlogPosts([
+  const loadBlogPosts = async (page: number) => {
+    try {
+      setLoading(true)
+      const response = await fetch(`/api/blog?page=${page}&limit=6`)
+      if (!response.ok) {
+        throw new Error('Failed to fetch blog posts')
+      }
+      const data = await response.json()
+      setBlogData(data)
+      setCurrentPage(page)
+    } catch (error) {
+      console.error('Error loading blog posts:', error)
+      // Use fallback data if API fails
+      setBlogData({
+        posts: [
           {
             title: "The Future of Customers in the AI Revolution: Communities Will Be Key",
             excerpt: "As AI continues to evolve, its making the process of creating products more accessible than ever. However, this newfound simplicity is shifting the challenge from how to create to how to acquire and retain customers.",
@@ -50,14 +53,27 @@ export function BlogSection() {
             category: "Information Architecture",
             link: "https://blog.karanbalaji.com/day-21-navigating-the-world-of-information-architecture"
           }
-        ])
-      } finally {
-        setLoading(false)
-      }
+        ],
+        totalPosts: 3,
+        currentPage: 1,
+        totalPages: 1,
+        hasNextPage: false,
+        hasPreviousPage: false
+      })
+    } finally {
+      setLoading(false)
     }
+  }
 
-    loadBlogPosts()
+  useEffect(() => {
+    loadBlogPosts(1)
   }, [])
+
+  const handlePageChange = (page: number) => {
+    loadBlogPosts(page)
+    // Scroll to top of blog section
+    document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   if (loading) {
     return (
@@ -71,7 +87,7 @@ export function BlogSection() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
+            {[1, 2, 3, 4, 5, 6].map((index) => (
               <div key={index} className="h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6">
                 <div className="animate-pulse">
                   <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-20"></div>
@@ -92,6 +108,10 @@ export function BlogSection() {
     )
   }
 
+  if (!blogData) {
+    return null
+  }
+
   return (
     <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -100,12 +120,17 @@ export function BlogSection() {
           <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
             Thoughts on UX design, frontend development, and the intersection of design and technology.
           </p>
+          {blogData.totalPosts > 0 && (
+            <p className="text-sm text-grey-500 dark:text-grey-400 mt-2">
+              Showing {((currentPage - 1) * 6) + 1}-{Math.min(currentPage * 6, blogData.totalPosts)} of {blogData.totalPosts} posts
+            </p>
+          )}
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
+          {blogData.posts.map((post, index) => (
             <HoverShadow
-              key={index}
+              key={`${post.slug}-${index}`}
               as="article"
               containerClassName="h-full rounded-xl"
               className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
@@ -152,6 +177,47 @@ export function BlogSection() {
             </HoverShadow>
           ))}
         </div>
+        
+        {/* Pagination Controls */}
+        {blogData.totalPages > 1 && (
+          <div className="flex items-center justify-center gap-4 mt-12">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={!blogData.hasPreviousPage}
+              className="flex items-center gap-2"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Previous
+            </Button>
+            
+            <div className="flex items-center gap-2">
+              {Array.from({ length: blogData.totalPages }, (_, i) => i + 1).map((page) => (
+                <Button
+                  key={page}
+                  variant={page === currentPage ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handlePageChange(page)}
+                  className="min-w-[40px]"
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={!blogData.hasNextPage}
+              className="flex items-center gap-2"
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
         
         <div className="text-center mt-12">
           <Button variant="outline" size="lg" asChild className="hover:bg-grey-100 dark:hover:bg-grey-800">

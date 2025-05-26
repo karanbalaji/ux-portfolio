@@ -11,6 +11,15 @@ export interface BlogPost {
   content?: string
 }
 
+export interface PaginatedBlogPosts {
+  posts: BlogPost[]
+  totalPosts: number
+  currentPage: number
+  totalPages: number
+  hasNextPage: boolean
+  hasPreviousPage: boolean
+}
+
 // Initialize RSS parser
 const parser = new Parser({
   customFields: {
@@ -70,12 +79,12 @@ function createSlug(title: string): string {
     .replace(/^-|-$/g, '')
 }
 
-// Main function to fetch and parse RSS feed
-export async function fetchBlogPosts(): Promise<BlogPost[]> {
+// Function to parse all RSS items
+async function parseAllRSSItems(): Promise<BlogPost[]> {
   try {
     const feed = await parser.parseURL('https://blog.karanbalaji.com/rss.xml')
     
-    return feed.items.slice(0, 6).map((item) => {
+    return feed.items.map((item) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const content = (item as any)['content:encoded'] || (item as any).description || item.contentSnippet || ''
       const title = item.title || 'Untitled Post'
@@ -91,7 +100,7 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
         link: item.link || '#',
         content
       }
-    })
+    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
   } catch (error) {
     console.error('Error fetching RSS feed:', error)
     
@@ -128,8 +137,33 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
   }
 }
 
+// Main function to fetch and parse RSS feed with pagination
+export async function fetchBlogPosts(page: number = 1, limit: number = 6): Promise<PaginatedBlogPosts> {
+  const allPosts = await parseAllRSSItems()
+  const totalPosts = allPosts.length
+  const totalPages = Math.ceil(totalPosts / limit)
+  const startIndex = (page - 1) * limit
+  const endIndex = startIndex + limit
+  const posts = allPosts.slice(startIndex, endIndex)
+
+  return {
+    posts,
+    totalPosts,
+    currentPage: page,
+    totalPages,
+    hasNextPage: page < totalPages,
+    hasPreviousPage: page > 1
+  }
+}
+
+// Function to get latest posts (for homepage)
+export async function getLatestBlogPosts(limit: number = 3): Promise<BlogPost[]> {
+  const allPosts = await parseAllRSSItems()
+  return allPosts.slice(0, limit)
+}
+
 // Function to get a single blog post by slug (for potential future use)
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  const posts = await fetchBlogPosts()
-  return posts.find(post => post.slug === slug) || null
+  const allPosts = await parseAllRSSItems()
+  return allPosts.find(post => post.slug === slug) || null
 } 
