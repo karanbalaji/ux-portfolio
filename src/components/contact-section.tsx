@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
+import { HoverShadow } from "@/components/ui/hover-shadow"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -50,10 +50,11 @@ export function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <HoverBorderGradient
+          <HoverShadow
             as="div"
             containerClassName="rounded-xl"
-            className="bg-background dark:bg-grey-900 p-8 rounded-xl shadow-sm"
+            className="bg-background dark:bg-grey-900 p-8 rounded-xl"
+            shadowIntensity="medium"
           >
             <h3 className="text-2xl font-semibold mb-6 text-grey-900 dark:text-grey-50">Send a Message</h3>
             
@@ -144,7 +145,7 @@ export function ContactSection() {
                 )}
               </Button>
             </form>
-          </HoverBorderGradient>
+          </HoverShadow>
 
           {/* Contact Information */}
           <div className="space-y-8">
@@ -157,10 +158,11 @@ export function ContactSection() {
             </div>
 
             <div className="space-y-6">
-              <HoverBorderGradient
+              <HoverShadow
                 as="div"
                 containerClassName="rounded-lg"
                 className="flex items-center gap-4 p-4 bg-background dark:bg-grey-900 rounded-lg"
+                shadowIntensity="light"
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-grey-100 dark:bg-grey-800 rounded-lg flex items-center justify-center">
                   <Mail className="h-5 w-5 text-grey-600 dark:text-grey-400" />
@@ -169,12 +171,13 @@ export function ContactSection() {
                   <h4 className="font-medium text-grey-900 dark:text-grey-50">Email</h4>
                   <p className="text-grey-600 dark:text-grey-300">hello@karandesigner.com</p>
                 </div>
-              </HoverBorderGradient>
+              </HoverShadow>
 
-              <HoverBorderGradient
+              <HoverShadow
                 as="div"
                 containerClassName="rounded-lg"
                 className="flex items-center gap-4 p-4 bg-background dark:bg-grey-900 rounded-lg"
+                shadowIntensity="light"
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-grey-100 dark:bg-grey-800 rounded-lg flex items-center justify-center">
                   <Phone className="h-5 w-5 text-grey-600 dark:text-grey-400" />
@@ -183,12 +186,13 @@ export function ContactSection() {
                   <h4 className="font-medium text-grey-900 dark:text-grey-50">Phone</h4>
                   <p className="text-grey-600 dark:text-grey-300">+1 (555) 123-4567</p>
                 </div>
-              </HoverBorderGradient>
+              </HoverShadow>
 
-              <HoverBorderGradient
+              <HoverShadow
                 as="div"
                 containerClassName="rounded-lg"
                 className="flex items-center gap-4 p-4 bg-background dark:bg-grey-900 rounded-lg"
+                shadowIntensity="light"
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-grey-100 dark:bg-grey-800 rounded-lg flex items-center justify-center">
                   <MapPin className="h-5 w-5 text-grey-600 dark:text-grey-400" />
@@ -197,7 +201,7 @@ export function ContactSection() {
                   <h4 className="font-medium text-grey-900 dark:text-grey-50">Location</h4>
                   <p className="text-grey-600 dark:text-grey-300">Toronto, Canada</p>
                 </div>
-              </HoverBorderGradient>
+              </HoverShadow>
             </div>
 
             <div className="pt-8">

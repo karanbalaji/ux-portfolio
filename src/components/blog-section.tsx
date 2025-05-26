@@ -1,37 +1,97 @@
-import Link from "next/link"
-import { Calendar, Clock, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"
+"use client"
 
-// Sample blog post data
-const blogPosts = [
-  {
-    title: "The Psychology of UX: Understanding User Behavior",
-    excerpt: "Exploring how cognitive psychology principles can inform better design decisions and create more intuitive user experiences.",
-    date: "2024-03-15",
-    readTime: "5 min read",
-    slug: "psychology-of-ux",
-    category: "UX Design"
-  },
-  {
-    title: "Building Accessible Design Systems",
-    excerpt: "A comprehensive guide to creating inclusive design systems that work for users with disabilities while maintaining visual appeal.",
-    date: "2024-03-10",
-    readTime: "8 min read",
-    slug: "accessible-design-systems",
-    category: "Accessibility"
-  },
-  {
-    title: "React Performance Optimization for UX Engineers",
-    excerpt: "Practical techniques for optimizing React applications to deliver smooth user experiences without compromising functionality.",
-    date: "2024-03-05",
-    readTime: "6 min read",
-    slug: "react-performance-optimization",
-    category: "Development"
-  }
-]
+import { Calendar, Clock, ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { HoverShadow } from "@/components/ui/hover-shadow"
+import { type BlogPost } from "@/lib/blog-service"
+import { useEffect, useState } from "react"
 
 export function BlogSection() {
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadBlogPosts = async () => {
+      try {
+        const response = await fetch('/api/blog')
+        if (!response.ok) {
+          throw new Error('Failed to fetch blog posts')
+        }
+        const posts = await response.json()
+        setBlogPosts(posts)
+      } catch (error) {
+        console.error('Error loading blog posts:', error)
+        // Use fallback data if API fails
+        setBlogPosts([
+          {
+            title: "The Future of Customers in the AI Revolution: Communities Will Be Key",
+            excerpt: "As AI continues to evolve, its making the process of creating products more accessible than ever. However, this newfound simplicity is shifting the challenge from how to create to how to acquire and retain customers.",
+            date: "2024-12-12",
+            readTime: "8 min read",
+            slug: "future-of-customers-ai-revolution-communities",
+            category: "AI & Tech",
+            link: "https://blog.karanbalaji.com/day-40-future-of-customers-in-the-ai-revolution-communities-will-be-key"
+          },
+          {
+            title: "Mastering Design Interviews: Insights from Google",
+            excerpt: "Design interviews are not just about answering questions; they are gateways to career opportunities and personal growth. Join me as I share invaluable insights from my mentorship session with Alex Small, a distinguished Staff Interaction Designer and Design Manager at Google.",
+            date: "2023-10-17",
+            readTime: "6 min read",
+            slug: "mastering-design-interviews-insights-google",
+            category: "UX Design",
+            link: "https://blog.karanbalaji.com/day-33-mastering-design-interviews-insights-from-google"
+          },
+          {
+            title: "Navigating the World of Information Architecture",
+            excerpt: "Information Architecture acts as a roadmap for websites, making it an indispensable element for UX designers. Understanding the difference between Information Architecture and navigation is essential for effective website structuring.",
+            date: "2023-10-06",
+            readTime: "5 min read",
+            slug: "navigating-world-information-architecture",
+            category: "Information Architecture",
+            link: "https://blog.karanbalaji.com/day-21-navigating-the-world-of-information-architecture"
+          }
+        ])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadBlogPosts()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
+            <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+              Thoughts on UX design, frontend development, and the intersection of design and technology.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6">
+                <div className="animate-pulse">
+                  <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-20"></div>
+                  <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-3 w-full"></div>
+                  <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded mb-2 w-full"></div>
+                  <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-3/4"></div>
+                  <div className="flex gap-4 mb-4">
+                    <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-24"></div>
+                    <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-20"></div>
+                  </div>
+                  <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-24"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
@@ -44,11 +104,12 @@ export function BlogSection() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
-            <HoverBorderGradient
+            <HoverShadow
               key={index}
               as="article"
-              containerClassName="rounded-xl"
-              className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              containerClassName="h-full rounded-xl"
+              className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
+              shadowIntensity="medium"
             >
               <div className="p-6 flex flex-col h-full">
                 <div className="mb-4">
@@ -78,23 +139,25 @@ export function BlogSection() {
                   </div>
                 </div>
                 
-                <Link
-                  href={`/blog/${post.slug}`}
+                <a
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
                 >
                   Read More
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                  <ExternalLink className="h-4 w-4" />
+                </a>
               </div>
-            </HoverBorderGradient>
+            </HoverShadow>
           ))}
         </div>
         
         <div className="text-center mt-12">
           <Button variant="outline" size="lg" asChild className="hover:bg-grey-100 dark:hover:bg-grey-800">
-            <Link href="/blog">
+            <a href="https://blog.karanbalaji.com" target="_blank" rel="noopener noreferrer">
               View All Posts
-            </Link>
+            </a>
           </Button>
         </div>
       </div>

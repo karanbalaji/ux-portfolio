@@ -1,5 +1,6 @@
 import { ArrowLeft, ExternalLink, Figma } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function FintechTorontoHero() {
@@ -61,11 +62,15 @@ export default function FintechTorontoHero() {
           </Button>
                      </div>        </div>
         
-        <div className="mt-12 relative h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-xl overflow-hidden bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700 flex items-center justify-center shadow-lg">
-          {/* Placeholder for project mockup/image */}
-          <div className="text-grey-400 dark:text-grey-500 text-lg font-medium">
-            [Project Visual]
-          </div>
+        <div className="mt-12 relative h-[300px] md:h-[400px] lg:h-[500px] w-full rounded-xl overflow-hidden bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700 shadow-lg">
+          <Image
+            src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=800&fit=crop&crop=center"
+            alt="FintechToronto.com platform interface showing fintech ecosystem dashboard"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         </div>
       </div>
     </section>

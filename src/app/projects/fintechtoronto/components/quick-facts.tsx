@@ -1,5 +1,6 @@
 import { Clock, Users, Zap, TrendingUp } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { HoverShadow } from "@/components/ui/hover-shadow"
 
 export default function QuickFacts() {
   const facts = [
@@ -79,7 +80,12 @@ export default function QuickFacts() {
             const IconComponent = fact.icon
             return (
               <div key={index} className="group">
-                <div className="bg-white dark:bg-grey-800 p-6 rounded-xl border border-grey-200 dark:border-grey-600 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <HoverShadow
+                  as="div"
+                  containerClassName="rounded-xl"
+                  className="bg-white dark:bg-grey-800 p-6 rounded-xl"
+                  shadowIntensity="medium"
+                >
                   <div className="flex flex-col items-center text-center space-y-4">
                     <div className={`p-4 rounded-2xl ${fact.color} transition-transform duration-300 group-hover:scale-110`}>
                       <IconComponent className="h-6 w-6" />
@@ -97,7 +103,7 @@ export default function QuickFacts() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </HoverShadow>
               </div>
             )
           })}

@@ -11,7 +11,7 @@ const projects = [
   {
     title: "FintechToronto.com",
     description: "A comprehensive UX case study for Toronto's fintech ecosystem platform featuring user research, design thinking, and behavioral economics principles.",
-    image: "/api/placeholder/600/400",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center",
     tags: ["UX Research", "Design Systems", "React", "Next.js"],
     link: "/projects/fintechtoronto",
     type: "case-study" as const
@@ -19,7 +19,7 @@ const projects = [
   {
     title: "E-commerce Dashboard",
     description: "Modern admin dashboard for e-commerce management with real-time analytics and inventory tracking.",
-    image: "/api/placeholder/600/400",
+    image: "https://images.unsplash.com/photo-1586717799252-bd134ad00e26?w=600&h=400&fit=crop&crop=center",
     tags: ["React", "TypeScript", "Chart.js", "Tailwind"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -28,7 +28,7 @@ const projects = [
   {
     title: "Design System Library",
     description: "Comprehensive component library built with React and documented with Storybook for consistent UI development.",
-    image: "/api/placeholder/600/400",
+    image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center",
     tags: ["React", "Storybook", "CSS-in-JS", "Documentation"],
     github: "https://github.com",
     demo: "https://demo.com",
