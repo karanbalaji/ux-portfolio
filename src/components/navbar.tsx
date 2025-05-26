@@ -63,8 +63,8 @@ export function Navbar() {
 
         {/* Mobile Navigation - Only Theme Toggle */}
         <div className="md:hidden">
-          <ThemeToggle />
-        </div>
+                <ThemeToggle />
+              </div>
       </div>
     </header>
   )

@@ -43,60 +43,60 @@ export function ProjectsSection() {
               <CardContainer className="inter-var" containerClassName="py-8">
                 <CardBody className="bg-grey-50 dark:bg-grey-900 relative group/card border border-grey-200 dark:border-grey-700 w-auto sm:w-[480px] lg:w-[550px] h-[580px] lg:h-[620px] rounded-xl p-6 shadow-sm flex flex-col cursor-pointer hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                 <div className="flex flex-col h-full">
-                  <CardItem
-                    translateZ="50"
+                <CardItem
+                  translateZ="50"
                     className="text-xl lg:text-2xl font-bold text-grey-900 dark:text-grey-50"
-                  >
-                    {project.title}
-                  </CardItem>
-                  
-                  <CardItem
-                    as="p"
-                    translateZ="60"
+                >
+                  {project.title}
+                </CardItem>
+                
+                <CardItem
+                  as="p"
+                  translateZ="60"
                     className="text-grey-600 dark:text-white text-sm lg:text-base max-w-none mt-2 flex-grow-0"
-                  >
-                    {project.description}
-                  </CardItem>
-                  
+                >
+                  {project.description}
+                </CardItem>
+                
                   <CardItem translateZ="100" className="w-full mt-4 flex-shrink-0">
-                    <Image
-                      src={project.image}
-                      height="1000"
-                      width="1000"
+                  <Image
+                    src={project.image}
+                    height="1000"
+                    width="1000"
                       className="w-full h-auto object-contain rounded-xl group-hover/card:shadow-xl"
-                      alt={project.title}
-                    />
-                  </CardItem>
-                  
-                  <CardItem
-                    translateZ="50"
-                    className="flex flex-wrap gap-2 mt-4"
-                  >
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
+                    alt={project.title}
+                  />
+                </CardItem>
+                
+                <CardItem
+                  translateZ="50"
+                  className="flex flex-wrap gap-2 mt-4"
+                >
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
                         className="inline-block px-3 py-1 text-xs lg:text-sm font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </CardItem>
-                  
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </CardItem>
+                
                   <div className="flex-grow"></div>
                   
                   <div className="flex justify-between items-center mt-4">
-                    <CardItem
-                      translateZ={20}
-                      className="flex-1"
-                    >
+                  <CardItem
+                    translateZ={20}
+                    className="flex-1"
+                  >
                       <Button variant="default" size="default" className="w-full gap-2 lg:text-base pointer-events-none">
                         View Case Study <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </CardItem>
+                    </Button>
+                  </CardItem>
                   </div>
                 </div>
-                </CardBody>
-              </CardContainer>
+              </CardBody>
+            </CardContainer>
             </Link>
           ))}
         </div>

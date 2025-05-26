@@ -2,7 +2,7 @@
 
 import { Code, Layout, Palette, Award, Zap, Users, TrendingUp, ExternalLink, Star, ChevronLeft, ChevronRight, Smartphone } from "lucide-react"
 import { HoverShadow } from "@/components/ui/hover-shadow"
-import { BackgroundBeams } from "@/components/ui/background-beams"
+
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -97,9 +97,8 @@ export function AboutSection() {
   const IconComponent = currentCard.icon
 
   return (
-    <section id="about" className="py-20 bg-grey-50/50 dark:bg-grey-900/30 relative overflow-hidden">
-      <BackgroundBeams className="absolute inset-0 z-0" />
-      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10">
+    <section id="about" className="py-20">
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">About Me</h2>
           <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
