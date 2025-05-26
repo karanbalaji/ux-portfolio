@@ -1,7 +1,6 @@
 "use client"
 
-import { Download, Code, Layout, Palette, Award, Zap, Users, TrendingUp, ExternalLink, Star, Calendar, MapPin, ChevronLeft, ChevronRight, Smartphone } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Code, Layout, Palette, Award, Zap, Users, TrendingUp, ExternalLink, Star, ChevronLeft, ChevronRight, Smartphone } from "lucide-react"
 import { HoverShadow } from "@/components/ui/hover-shadow"
 import Image from "next/image"
 import { useState, useEffect } from "react"

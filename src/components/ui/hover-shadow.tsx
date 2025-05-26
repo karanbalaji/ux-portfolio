@@ -2,13 +2,19 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-interface HoverShadowProps {
+type HoverShadowProps<T extends React.ElementType = "button"> = {
   children: React.ReactNode;
-  as?: React.ElementType;
+  as?: T;
   containerClassName?: string;
   className?: string;
   shadowIntensity?: "light" | "medium" | "strong";
-}
+} & Omit<React.ComponentPropsWithoutRef<T>, keyof {
+  children: React.ReactNode;
+  as?: T;
+  containerClassName?: string;
+  className?: string;
+  shadowIntensity?: "light" | "medium" | "strong";
+}>;
 
 export function HoverShadow<T extends React.ElementType = "button">({
   children,
@@ -17,10 +23,9 @@ export function HoverShadow<T extends React.ElementType = "button">({
   as,
   shadowIntensity = "medium",
   ...props
-}: HoverShadowProps & 
-  Omit<React.ComponentPropsWithoutRef<T>, keyof HoverShadowProps>) {
+}: HoverShadowProps<T>) {
   
-  const Tag = as || "button";
+  const Tag = (as || "button") as React.ElementType;
   
   const shadowVariants = {
     light: {
