@@ -1,0 +1,83 @@
+name: Update Blog Content
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-and-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check RSS Feed for changes
+        id: check-rss
+        run: |
+          # Get current RSS content hash
+          CURRENT_HASH=$(curl -s https://blog.karanbalaji.com/rss.xml | sha256sum | cut -d' ' -f1)
+          echo "Current RSS hash: $CURRENT_HASH"
+          
+          # Get stored hash from previous run (if exists)
+          if [ -f "rss-hash.txt" ]; then
+            STORED_HASH=$(cat rss-hash.txt)
+            echo "Stored RSS hash: $STORED_HASH"
+          else
+            STORED_HASH=""
+            echo "No stored hash found"
+          fi
+          
+          if [ "$CURRENT_HASH" != "$STORED_HASH" ]; then
+            echo "RSS feed updated, triggering rebuild"
+            echo "rebuild=true" >> $GITHUB_OUTPUT
+            echo "$CURRENT_HASH" > rss-hash.txt
+          else
+            echo "No RSS changes detected"
+            echo "rebuild=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate fresh blog data
+        if: steps.check-rss.outputs.rebuild == 'true'
+        run: npm run generate-blog
+
+      - name: Commit hash update
+        if: steps.check-rss.outputs.rebuild == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add rss-hash.txt
+          git add public/blog-data.json
+          git commit -m "Update RSS hash and blog data [skip ci]" || exit 0
+          git push
+
+      - name: Trigger Netlify Build
+        if: steps.check-rss.outputs.rebuild == 'true'
+        run: |
+          if [ -n "${{ secrets.NETLIFY_BUILD_HOOK }}" ]; then
+            echo "Triggering Netlify build..."
+            curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
+            echo "✅ Netlify build triggered successfully!"
+          else
+            echo "⚠️ NETLIFY_BUILD_HOOK secret not set. Please add it to your repository secrets."
+          fi
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.check-rss.outputs.rebuild }}" == "true" ]; then
+            echo "🚀 Blog content updated and Netlify build triggered!"
+          else
+            echo "✅ No changes detected. Blog is up to date."
+          fi 

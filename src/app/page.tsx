@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section" 
 import { ProjectsSection } from "@/components/projects-section" 
-import { BlogSectionServer } from "@/components/blog-section-server"
+import { StaticBlogSection } from "@/components/static-blog-section"
 import { ContactSection } from "@/components/contact-section"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
@@ -15,7 +15,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
-        <BlogSectionServer />
+        <StaticBlogSection />
         <ContactSection />
       </main>
       <Footer />
