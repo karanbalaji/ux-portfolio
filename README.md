@@ -189,7 +189,7 @@ The project will be built and optimized for Vercel's serverless functions.
 
 ## 👨‍💻 About the Developer
 
-**Karan Balaji** is a UX/Design Engineer from Toronto, specializing in creating conversion-driven digital experiences that bridge user needs with business goals. This portfolio showcases the intersection of design thinking, frontend engineering, and data-driven optimization.
+**Karan Balaji** is a Design Engineer from Toronto, specializing in creating conversion-driven digital experiences that bridge user needs with business goals. This portfolio showcases the intersection of design thinking, frontend engineering, and data-driven optimization.
 
 ### Connect
 - **Website**: [karanbalaji.com](https://karanbalaji.com/)

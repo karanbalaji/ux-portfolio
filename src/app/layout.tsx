@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Karan Balaji - UX/Design Engineer from Toronto",
-  description: "UX/Design Engineer from Toronto specializing in user-centered design, frontend development, and creating conversion-driven digital experiences. Portfolio showcasing design systems, growth engineering, and innovative web solutions.",
+  title: "Karan Balaji - A Design Engineer from Toronto",
+  description: "A Design Engineer from Toronto specializing in user-centered design, frontend development, and creating conversion-driven digital experiences. Portfolio showcasing design systems, growth engineering, and innovative web solutions.",
 };
 
 export default function RootLayout({
