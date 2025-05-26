@@ -7,6 +7,29 @@ export async function POST(request: NextRequest) {
   try {
     // Check if API key is available
     if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured')
+      
+      // In development, log the form data but don't send email
+      if (process.env.NODE_ENV === 'development') {
+        const formData = await request.formData()
+        const name = formData.get('name') as string
+        const email = formData.get('email') as string
+        const subject = formData.get('subject') as string
+        const message = formData.get('message') as string
+        
+        console.log('Development mode - Contact form submission:', {
+          name,
+          email,
+          subject,
+          message: message.substring(0, 100) + '...'
+        })
+        
+        return NextResponse.json(
+          { message: 'Development mode: Form data logged to console' },
+          { status: 200 }
+        )
+      }
+      
       return NextResponse.json(
         { error: 'Email service is not configured' },
         { status: 500 }
@@ -23,6 +46,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
+      console.error('Missing required fields:', { name: !!name, email: !!email, subject: !!subject, message: !!message })
       return NextResponse.json(
         { error: 'All fields are required' },
         { status: 400 }
@@ -117,11 +141,12 @@ ${message}
     if (error) {
       console.error('Resend error:', error)
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: 'Failed to send email', details: error.message || 'Unknown error' },
         { status: 500 }
       )
     }
 
+    console.log('Email sent successfully:', data?.id)
     return NextResponse.json(
       { message: 'Email sent successfully', id: data?.id },
       { status: 200 }
@@ -129,7 +154,7 @@ ${message}
   } catch (error) {
     console.error('Contact form error:', error)
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     )
   }

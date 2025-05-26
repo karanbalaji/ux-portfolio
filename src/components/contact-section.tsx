@@ -20,6 +20,7 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [fileError, setFileError] = useState<string>("")
+  const [errorMessage, setErrorMessage] = useState<string>("")
 
   // Images for the 3D marquee background
   const marqueeImages = [
@@ -101,25 +102,45 @@ export function ContactSection() {
         body: submitFormData,
       })
 
-      const result = await response.json()
+      // Check if response has content before parsing JSON
+      let result = null
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('application/json')) {
+        const text = await response.text()
+        if (text) {
+          try {
+            result = JSON.parse(text)
+          } catch (parseError) {
+            console.error('Failed to parse JSON response:', parseError)
+            result = { error: 'Invalid response from server' }
+          }
+        }
+      }
 
       if (response.ok) {
         setSubmitStatus('success')
         setFormData({ name: "", email: "", subject: "", message: "" })
         setAttachment(null)
         setFileError("")
+        setErrorMessage("")
         // Reset file input
         const fileInput = document.getElementById('attachment') as HTMLInputElement
         if (fileInput) fileInput.value = ""
       } else {
         setSubmitStatus('error')
-        if (result.error) {
-          setFileError(result.error)
+        if (result && result.error) {
+          setErrorMessage(result.error)
+          if (result.error.includes('file') || result.error.includes('attachment')) {
+            setFileError(result.error)
+          }
+        } else {
+          setErrorMessage(`Server error: ${response.status} ${response.statusText}`)
         }
       }
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Network error occurred')
     } finally {
       setIsSubmitting(false)
       
@@ -161,9 +182,18 @@ export function ContactSection() {
             )}
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 flex items-center gap-3">
-                <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <span className="text-red-800 dark:text-red-200">Something went wrong. Please try again.</span>
+              <div className="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <span className="text-red-800 dark:text-red-200 block">
+                    {errorMessage || "Something went wrong. Please try again."}
+                  </span>
+                  {process.env.NODE_ENV === 'development' && (
+                    <span className="text-red-600 dark:text-red-400 text-sm mt-1 block">
+                      Check the browser console and server logs for more details.
+                    </span>
+                  )}
+                </div>
               </div>
             )}
 
