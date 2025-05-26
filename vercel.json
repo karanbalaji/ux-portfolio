@@ -1,7 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "https://karanbalaji.com/$1",
       "permanent": true,
       "has": [
