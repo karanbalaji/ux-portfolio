@@ -6,30 +6,30 @@ export default function QuickFacts() {
   const facts = [
     {
       icon: Clock,
-      label: "Timeline",
-      value: "3 months",
-      description: "Design to launch",
+      label: "Lighthouse Score",
+      value: "55% → 92%",
+      description: "Performance improvement",
       color: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
     },
     {
       icon: Users,
-      label: "Team Size",
-      value: "Solo Project",
-      description: "Full-stack development",
+      label: "Role",
+      value: "Design Engineer",
+      description: "Growth team at Series B",
       color: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
     },
     {
       icon: Zap,
-      label: "Key Tools",
-      value: "Cursor + Figma",
-      description: "AI-assisted design engineering",
+      label: "Focus",
+      value: "Mobile-First",
+      description: "61% mobile users",
       color: "bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400"
     },
     {
       icon: TrendingUp,
       label: "Impact",
-      value: "40%+ Growth",
-      description: "Organic traffic increase",
+      value: "69% Growth",
+      description: "650K → 1.1M conversions",
       color: "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400"
     }
   ]
@@ -113,15 +113,15 @@ export default function QuickFacts() {
           <div className="flex flex-wrap justify-center gap-3 lg:gap-4 text-xs text-grey-500 dark:text-grey-400">
             <span className="flex items-center gap-1">
               <div className="w-2 h-2 bg-primary rounded-full"></div>
-              User-Centered Design
+              Patient-Centered Design
             </span>
             <span className="flex items-center gap-1">
               <div className="w-2 h-2 bg-secondary rounded-full"></div>
-              Community-Driven
+              Mobile-First Approach
             </span>
             <span className="flex items-center gap-1">
               <div className="w-2 h-2 bg-tertiary rounded-full"></div>
-              Data-Informed
+              Outcome-Driven
             </span>
           </div>
         </div>

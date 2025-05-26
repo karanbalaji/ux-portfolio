@@ -3,6 +3,7 @@
 import { ArrowRight, ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThreeDMarquee } from "@/components/ui/3d-marquee"
+import { PointerHighlight } from "@/components/ui/pointer-highlight"
 
 // Enhanced UX design images from Aceternity UI showcase
 const uxDesignImages = [
@@ -56,11 +57,17 @@ export function HeroSection() {
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6 text-white">
           <span className="block">Hi, I&apos;m Karan</span>
-          <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            UX Engineer & Designer
+          <span className="block mt-1 sm:mt-2 text-white">
+            <PointerHighlight
+              pointerClassName="text-blue-400"
+              rectangleClassName="border-blue-400"
+            >
+              UX Engineer
+            </PointerHighlight>
+            {" & Designer"}
           </span>
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-[600px] mb-8 sm:mb-10 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-white max-w-[600px] mb-8 sm:mb-10 leading-relaxed">
           I design and build beautiful, responsive, and accessible digital experiences 
           that solve real user problems.
         </p>

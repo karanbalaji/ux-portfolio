@@ -5,12 +5,13 @@ import { BlogSectionServer } from "@/components/blog-section-server"
 import { ContactSection } from "@/components/contact-section"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import { BottomNavigation } from "@/components/bottom-navigation"
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pb-20 md:pb-0">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
@@ -18,6 +19,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <BottomNavigation />
     </div>
   );
 }

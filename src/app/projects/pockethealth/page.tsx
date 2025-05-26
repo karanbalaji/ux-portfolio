@@ -3,7 +3,7 @@ import { ProjectNavbar } from "@/components/project-navbar"
 import { ProjectFooter } from "@/components/project-footer"
 import { MobileTableOfContents } from "@/components/mobile-table-of-contents"
 import { ProjectBottomNavigation } from "@/components/project-bottom-navigation"
-import FintechTorontoHero from "./components/fintech-toronto-hero"
+import PocketHealthHero from "./components/pockethealth-hero"
 import TableOfContents from "./components/table-of-contents"
 import ExecutiveSummary from "./components/executive-summary"
 import ProblemStatement from "./components/problem-statement"
@@ -33,82 +33,86 @@ const tocData = [
     id: "problem-statement", 
     label: "Problem Statement",
     subsections: [
-      { id: "market-analysis", label: "Market Analysis" },
+      { id: "conversion-challenges", label: "Conversion Challenges" },
       { id: "user-personas", label: "User Personas" },
-      { id: "pain-points", label: "Pain Points" }
+      { id: "technical-debt", label: "Technical Debt" }
     ]
   },
   { 
     id: "design-thinking", 
     label: "Design Process",
     subsections: [
-      { id: "empathize-define", label: "Empathize & Define" },
-      { id: "ideate", label: "Ideate" },
-      { id: "prototype-test", label: "Prototype & Test" },
-      { id: "implement", label: "Implement" }
+      { id: "research-insights", label: "Research & Insights" },
+      { id: "ab-testing", label: "A/B Testing Strategy" },
+      { id: "iterative-design", label: "Iterative Design" },
+      { id: "implementation", label: "Implementation" }
     ]
   },
   { 
     id: "user-flows", 
     label: "User Flows",
     subsections: [
-      { id: "content-creation", label: "Content Creation" },
-      { id: "event-discovery", label: "Event Discovery" },
-      { id: "user-onboarding", label: "User Onboarding" }
+      { id: "landing-page-optimization", label: "Landing Page Optimization" },
+      { id: "landing-pages", label: "Landing Page Templates" },
+      { id: "mobile-experience", label: "Mobile Experience Design" }
     ]
   },
   { 
     id: "features", 
-    label: "Features & UX",
+    label: "UX Laws & Heuristic Evaluation",
     subsections: [
-      { id: "ui-patterns", label: "UI Patterns" },
-      { id: "accessibility", label: "Accessibility" },
-      { id: "mobile-design", label: "Mobile Design" }
+      { id: "conversion-optimization", label: "UX Laws Applied" },
+      { id: "analytics-tracking", label: "Heuristic Evaluation" },
+      { id: "performance-improvements", label: "UX Improvements" }
     ]
   },
   { 
     id: "ux-principles", 
-    label: "UX Principles",
+    label: "UX Principles & Outcome-Driven Design",
     subsections: [
-      { id: "usability-heuristics", label: "Usability Heuristics" },
-      { id: "behavioral-economics", label: "Behavioral Economics" }
+      { id: "fundamental-laws", label: "Fundamental UX Laws" },
+      { id: "outcome-driven-design", label: "Outcome-Driven Design" },
+      { id: "references", label: "References" }
     ]
   },
   { 
     id: "social-proof", 
-    label: "Impact",
+    label: "Results & Impact",
     subsections: [
-      { id: "event-success", label: "Fintech + AI Meetup" },
-      { id: "community-impact", label: "Community Impact Metrics" }
+      { id: "conversion-metrics", label: "Conversion Metrics" },
+      { id: "performance-gains", label: "Performance Gains" },
+      { id: "seo-improvements", label: "SEO Improvements" }
     ]
   },
   { 
     id: "tech-stack", 
     label: "Tech Stack",
     subsections: [
-      { id: "frontend", label: "Frontend" },
-      { id: "backend", label: "Backend" },
-      { id: "infrastructure", label: "Infrastructure" }
+      { id: "analytics-tools", label: "Analytics Tools" },
+      { id: "testing-platforms", label: "Testing Platforms" },
+      { id: "design-tools", label: "Design Tools" }
     ]
   },
 ]
 
 export const metadata: Metadata = {
-  title: "FintechToronto.com Case Study | Karan's Portfolio",
-  description: "Enhanced UX Case Study for FintechToronto.com - A centralized platform for Toronto's fintech ecosystem",
+  title: "PocketHealth Case Study | Karan's Portfolio",
+  description: "Growth Engineering Case Study for PocketHealth.com - Boosting conversions from 650K to 1.1M through data-driven UX optimization",
 }
 
-export default function FintechTorontoPage() {
+export default function PocketHealthPage() {
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <ReadingProgress />
       
       <ProjectNavbar 
-        projectTitle="FintechToronto.com"
-        projectUrl="https://fintechtoronto.com"
+        projectTitle="PocketHealth.com"
+        projectUrl="https://pockethealth.com"
+        figmaUrl="https://figma.com/file/pockethealth-designs"
+        githubUrl="#"
       />
       
-      <FintechTorontoHero />
+      <PocketHealthHero />
       
       {/* Mobile Table of Contents */}
       <MobileTableOfContents items={tocData} />
@@ -155,13 +159,13 @@ export default function FintechTorontoPage() {
       
       <ProjectFooter 
         currentProject={{
-          title: "FintechToronto.com",
-          url: "https://fintechtoronto.com"
-        }}
-        previousProject={{
           title: "PocketHealth.com",
-          href: "/projects/pockethealth",
-          description: "Design Engineering at PocketHealth - Mobile-first patient experience"
+          url: "https://pockethealth.com"
+        }}
+        nextProject={{
+          title: "FinTech Toronto",
+          href: "/projects/fintechtoronto",
+          description: "Centralized platform for Toronto's fintech ecosystem"
         }}
       />
       
@@ -170,7 +174,7 @@ export default function FintechTorontoPage() {
       {/* Project Bottom Navigation for Mobile */}
       <ProjectBottomNavigation 
         tocItems={tocData}
-        projectUrl="https://fintechtoronto.com"
+        projectUrl="https://pockethealth.com"
       />
     </div>
   )

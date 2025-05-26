@@ -5,7 +5,7 @@ export default function Breadcrumbs() {
   const breadcrumbs = [
     { label: "Home", href: "/", icon: Home },
     { label: "Projects", href: "/#projects" },
-    { label: "FintechToronto.com", href: "/projects/fintechtoronto", current: true }
+    { label: "PocketHealth.com", href: "/projects/pockethealth", current: true }
   ]
 
   return (

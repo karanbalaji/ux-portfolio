@@ -43,7 +43,7 @@ export function ContactSection() {
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Get In Touch</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+          <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
             Have a project in mind? Let&apos;s discuss how we can work together to create something amazing.
           </p>
         </div>
@@ -151,7 +151,7 @@ export function ContactSection() {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-grey-900 dark:text-grey-50">Let&apos;s Connect</h3>
-              <p className="text-grey-600 dark:text-grey-300 mb-8 leading-relaxed">
+              <p className="text-grey-600 dark:text-white mb-8 leading-relaxed">
                 I&apos;m always excited to discuss new opportunities, collaborate on interesting projects, 
                 or simply chat about design and technology. Don&apos;t hesitate to reach out!
               </p>

@@ -118,7 +118,7 @@ export function ProjectFooter({ currentProject, nextProject, previousProject }: 
           {/* Brand & Current Project */}
           <div className="lg:col-span-2">
             <Link href="/#home" className="text-2xl font-bold text-grey-900 dark:text-grey-50 hover:text-primary transition-colors">
-              Karan UX
+              Karan Balaji
             </Link>
             {currentProject && (
               <div className="mt-4 p-4 rounded-lg bg-grey-50 dark:bg-grey-800/50 border border-grey-200 dark:border-grey-700">

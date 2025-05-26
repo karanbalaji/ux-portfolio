@@ -2,6 +2,7 @@
 
 import { Code, Layout, Palette, Award, Zap, Users, TrendingUp, ExternalLink, Star, ChevronLeft, ChevronRight, Smartphone } from "lucide-react"
 import { HoverShadow } from "@/components/ui/hover-shadow"
+import { BackgroundBeams } from "@/components/ui/background-beams"
 import Image from "next/image"
 import { useState, useEffect } from "react"
 
@@ -96,11 +97,12 @@ export function AboutSection() {
   const IconComponent = currentCard.icon
 
   return (
-    <section id="about" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
-      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <section id="about" className="py-20 bg-grey-50/50 dark:bg-grey-900/30 relative overflow-hidden">
+      <BackgroundBeams className="absolute inset-0 z-0" />
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">About Me</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+          <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
             Design Engineer with proven expertise in rapid prototyping and driving growth through experimentation.
           </p>
         </div>
@@ -108,15 +110,15 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - About Content */}
           <div className="order-1 lg:order-1">
-            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-grey-200">
+            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-white">
               I&apos;m a Design Engineer selected into <strong>Next AI</strong> (Canada&apos;s top AI accelerator with &lt;1% acceptance rate). 
               I specialize in rapidly building prototypes from design to frontend code using scalable design system components and measuring outcomes with experimentation tools.
             </p>
-            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-grey-200">
+            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-white">
               At <strong>Pocket Health</strong> (Series B), I boosted sign-up conversions from 650K to 1.1M through data-driven UX improvements and A/B testing using tools like Hotjar, Google Optimize, and VWO. 
               I&apos;ve built 100+ responsive templates and improved conversion rates by 17% monthly through systematic experimentation.
             </p>
-            <p className="text-lg mb-8 leading-relaxed text-grey-700 dark:text-grey-200">
+            <p className="text-lg mb-8 leading-relaxed text-grey-700 dark:text-white">
               I&apos;m the <strong>AI Collective Toronto Chapter Leader</strong>, organizing GenAI meetups that bring together 500+ professionals. 
               I also serve as a <strong>Guest Speaker at University of Toronto</strong> on HCI and A/B testing, and mentor UX Engineers on ADPList where I was recognized as a <strong>Top 50 Growth Design Mentor</strong> for multiple quarters.
             </p>

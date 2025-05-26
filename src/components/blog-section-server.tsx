@@ -47,20 +47,26 @@ export async function BlogSectionServer() {
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+          <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
             Thoughts on UX design, frontend development, and the intersection of design and technology.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
-            <HoverShadow
+            <a
               key={index}
-              as="article"
-              containerClassName="h-full rounded-xl"
-              className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
-              shadowIntensity="medium"
+              href={post.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-full"
             >
+              <HoverShadow
+                as="article"
+                containerClassName="h-full rounded-xl"
+                className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] border border-transparent hover:shadow-lg"
+                shadowIntensity="medium"
+              >
               <div className="p-6 flex flex-col h-full">
                 <div className="mb-4">
                   <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full">
@@ -72,7 +78,7 @@ export async function BlogSectionServer() {
                   {post.title}
                 </h3>
                 
-                <p className="text-grey-600 dark:text-grey-300 mb-4 leading-relaxed flex-1">
+                <p className="text-grey-600 dark:text-white mb-4 leading-relaxed flex-1">
                   {post.excerpt}
                 </p>
                 
@@ -89,17 +95,13 @@ export async function BlogSectionServer() {
                   </div>
                 </div>
                 
-                <a
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
-                >
+                <div className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300 pointer-events-none">
                   Read More
                   <ExternalLink className="h-4 w-4" />
-                </a>
+                </div>
               </div>
-            </HoverShadow>
+              </HoverShadow>
+            </a>
           ))}
         </div>
         
