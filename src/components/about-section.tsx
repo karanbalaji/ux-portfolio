@@ -97,7 +97,7 @@ export function AboutSection() {
   const IconComponent = currentCard.icon
 
   return (
-    <section id="about" className="py-20">
+    <section id="about" role="main" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">About Me</h2>
@@ -214,7 +214,7 @@ export function AboutSection() {
                 <HoverShadow
                   as="div"
                   containerClassName="rounded-xl"
-                  className="relative bg-background dark:bg-grey-800 rounded-xl border border-grey-200 dark:border-grey-700 overflow-hidden cursor-pointer"
+                  className="relative bg-background dark:bg-grey-900 rounded-xl border border-grey-200 dark:border-grey-700 overflow-hidden cursor-pointer"
                   shadowIntensity="strong"
                 >
                   {/* Image/Visual Section */}
@@ -248,6 +248,7 @@ export function AboutSection() {
                         e.preventDefault()
                         prevCard()
                       }}
+                      aria-label="Previous achievement card"
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
                     >
                       <ChevronLeft className="h-5 w-5" />
@@ -257,6 +258,7 @@ export function AboutSection() {
                         e.preventDefault()
                         nextCard()
                       }}
+                      aria-label="Next achievement card"
                       className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
                     >
                       <ChevronRight className="h-5 w-5" />
@@ -280,23 +282,46 @@ export function AboutSection() {
                     <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
                       <h4 className="font-semibold text-grey-900 dark:text-grey-50 mb-2 text-lg">{currentCard.title}</h4>
                       <p className="text-sm text-grey-600 dark:text-grey-300 mb-3">{currentCard.description}</p>
-                      <p className="text-xs text-grey-500 dark:text-grey-400 font-medium">{currentCard.stats}</p>
+                      <p className="text-xs text-grey-600 dark:text-grey-300 font-medium">{currentCard.stats}</p>
                     </div>
                   </div>
                 </HoverShadow>
               </a>
 
-              {/* Dots Indicator - Outside the card */}
-              <div className="flex justify-center mt-4 gap-2">
-                {leadershipCards.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleCardTransition(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentCardIndex ? 'bg-grey-900 dark:bg-grey-100 scale-125' : 'bg-grey-400 dark:bg-grey-600 scale-100'
-                    }`}
+              {/* Progress Indicator - Outside the card */}
+              <div className="mt-4 space-y-3">
+                {/* Current achievement indicator */}
+                <div className="text-center">
+                  <span className="text-sm text-grey-600 dark:text-grey-300">
+                    {currentCardIndex + 1} of {leadershipCards.length}
+                  </span>
+                </div>
+                
+                {/* Progress bar */}
+                <div className="w-full bg-grey-200 dark:bg-grey-700 rounded-full h-1">
+                  <div 
+                    className="bg-grey-900 dark:bg-grey-100 h-1 rounded-full transition-all duration-500 ease-out"
+                    style={{ width: `${((currentCardIndex + 1) / leadershipCards.length) * 100}%` }}
                   />
-                ))}
+                </div>
+                
+                {/* Achievement titles as navigation */}
+                <div className="flex justify-center gap-1 mt-3">
+                  {leadershipCards.map((card, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleCardTransition(index)}
+                      aria-label={`Go to achievement ${index + 1}: ${card.title}`}
+                      className={`w-10 h-10 rounded text-xs font-medium transition-all duration-300 flex items-center justify-center ${
+                        index === currentCardIndex 
+                          ? 'bg-grey-900 dark:bg-grey-100 text-white dark:text-grey-900' 
+                          : 'bg-grey-200 dark:bg-grey-700 text-grey-600 dark:text-grey-300 hover:bg-grey-300 dark:hover:bg-grey-600'
+                      }`}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 

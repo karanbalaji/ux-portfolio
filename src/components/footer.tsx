@@ -1,21 +1,33 @@
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import Link from "next/link"
+
+// Custom X (formerly Twitter) icon component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg 
+    className={className}
+    fill="currentColor" 
+    viewBox="0 0 24 24" 
+    aria-hidden="true"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
 
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/karanbalaji",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/karanbalaji/",
     icon: Linkedin,
   },
   {
-    name: "Twitter",
-    href: "https://twitter.com",
-    icon: Twitter,
+    name: "X",
+    href: "https://x.com/Karanbalaji047",
+    icon: XIcon,
   },
   {
     name: "Email",
@@ -105,19 +117,19 @@ export function Footer() {
         {/* Bottom Border */}
         <div className="border-t border-grey-200 dark:border-grey-800 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-grey-500 dark:text-grey-500 text-sm">
+            <p className="text-grey-500 dark:text-grey-300 text-sm">
               © {new Date().getFullYear()} Karan. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link
                 href="/privacy"
-                className="text-grey-500 dark:text-grey-500 hover:text-grey-700 dark:hover:text-grey-300 transition-colors"
+                className="text-grey-500 dark:text-grey-300 hover:text-grey-700 dark:hover:text-grey-100 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-grey-500 dark:text-grey-500 hover:text-grey-700 dark:hover:text-grey-300 transition-colors"
+                className="text-grey-500 dark:text-grey-300 hover:text-grey-700 dark:hover:text-grey-100 transition-colors"
               >
                 Terms of Service
               </Link>

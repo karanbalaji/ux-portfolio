@@ -214,7 +214,7 @@ export default function TableOfContents() {
       
       {/* Progress indicator */}
       <div className="mt-6 pt-4 border-t border-grey-200 dark:border-grey-600">
-        <div className="flex justify-between text-xs text-grey-500 mb-2">
+        <div className="flex justify-between text-xs text-grey-500 dark:text-grey-400 mb-2">
           <span>Progress</span>
           <span>
             {Math.round(

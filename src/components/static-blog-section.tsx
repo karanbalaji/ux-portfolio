@@ -3,7 +3,7 @@
 import { Calendar, Clock, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HoverShadow } from "@/components/ui/hover-shadow"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 interface BlogPost {
   title: string
@@ -18,9 +18,12 @@ interface BlogPost {
 export function StaticBlogSection() {
   const [allPosts, setAllPosts] = useState<BlogPost[]>([])
   const [currentPosts, setCurrentPosts] = useState<BlogPost[]>([])
+  const [mobilePosts, setMobilePosts] = useState<BlogPost[]>([]) // For mobile infinite loading
   const [loading, setLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
+  const [mobileLoadedPages, setMobileLoadedPages] = useState(1) // Track loaded pages for mobile
   const postsPerPage = 6
+  const mobileScrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Fetch from static JSON file
@@ -29,6 +32,7 @@ export function StaticBlogSection() {
       .then((data: BlogPost[]) => {
         setAllPosts(data)
         setCurrentPosts(data.slice(0, postsPerPage))
+        setMobilePosts(data.slice(0, postsPerPage)) // Initialize mobile posts
         setLoading(false)
       })
       .catch(error => {
@@ -40,6 +44,7 @@ export function StaticBlogSection() {
   const totalPages = Math.ceil(allPosts.length / postsPerPage)
   const hasNextPage = currentPage < totalPages
   const hasPreviousPage = currentPage > 1
+  const hasMoreMobilePosts = mobileLoadedPages < totalPages
 
   const handlePageChange = (page: number) => {
     const startIndex = (page - 1) * postsPerPage
@@ -49,6 +54,29 @@ export function StaticBlogSection() {
     
     // Scroll to top of blog section
     document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const loadMoreMobilePosts = () => {
+    if (hasMoreMobilePosts) {
+      const nextPage = mobileLoadedPages + 1
+      const startIndex = 0
+      const endIndex = nextPage * postsPerPage
+      setMobilePosts(allPosts.slice(startIndex, endIndex))
+      setMobileLoadedPages(nextPage)
+    }
+  }
+
+  // Handle scroll event for mobile infinite loading
+  const handleMobileScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget
+    const scrollLeft = container.scrollLeft
+    const scrollWidth = container.scrollWidth
+    const clientWidth = container.clientWidth
+    
+    // Load more when near the end (within 100px)
+    if (scrollLeft + clientWidth >= scrollWidth - 100 && hasMoreMobilePosts) {
+      loadMoreMobilePosts()
+    }
   }
 
   if (loading) {
@@ -62,7 +90,29 @@ export function StaticBlogSection() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Mobile Swipeable Loading */}
+          <div className="block md:hidden overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 pb-4" style={{ scrollSnapType: 'x mandatory' }}>
+              {[1, 2, 3, 4, 5, 6].map((index) => (
+                <div key={index} className="min-w-[320px] bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6" style={{ scrollSnapAlign: 'start' }}>
+                  <div className="animate-pulse">
+                    <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-20"></div>
+                    <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-3 w-full"></div>
+                    <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded mb-2 w-full"></div>
+                    <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-3/4"></div>
+                    <div className="flex gap-4 mb-4">
+                      <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-24"></div>
+                      <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-20"></div>
+                    </div>
+                    <div className="h-4 bg-grey-200 dark:bg-grey-700 rounded w-24"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid Loading */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((index) => (
               <div key={index} className="h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6">
                 <div className="animate-pulse">
@@ -94,12 +144,100 @@ export function StaticBlogSection() {
           </p>
           {allPosts.length > 0 && (
             <p className="text-sm text-grey-500 dark:text-grey-400 mt-2">
-              Showing {((currentPage - 1) * postsPerPage) + 1}-{Math.min(currentPage * postsPerPage, allPosts.length)} of {allPosts.length} posts
+              <span className="hidden md:inline">
+                Showing {((currentPage - 1) * postsPerPage) + 1}-{Math.min(currentPage * postsPerPage, allPosts.length)} of {allPosts.length} posts
+              </span>
+              <span className="md:hidden">
+                Showing {mobilePosts.length} of {allPosts.length} posts
+              </span>
             </p>
           )}
+          
+          {/* Mobile swipe indicator */}
+          <div className="block md:hidden mt-4">
+            <p className="text-xs text-grey-400 dark:text-grey-500 flex items-center gap-2">
+              <span>Swipe to explore</span>
+              <span className="text-lg">→</span>
+              {hasMoreMobilePosts && (
+                <span className="ml-2 px-2 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs">
+                  +{allPosts.length - mobilePosts.length} more
+                </span>
+              )}
+            </p>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Mobile Swipeable Layout */}
+        <div 
+          ref={mobileScrollRef}
+          className="block md:hidden overflow-x-auto scrollbar-hide"
+          onScroll={handleMobileScroll}
+        >
+          <div className="flex gap-4 pb-4 px-2" style={{ scrollSnapType: 'x mandatory' }}>
+            {mobilePosts.map((post, index) => (
+              <HoverShadow
+                key={`${post.slug}-${index}`}
+                as="article"
+                containerClassName="min-w-[320px] rounded-xl"
+                className="group min-w-[320px] bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
+                shadowIntensity="medium"
+                style={{ scrollSnapAlign: 'start' }}
+              >
+                <div className="p-6 flex flex-col h-full">
+                  <div className="mb-4">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-lg font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-tertiary transition-colors leading-tight line-clamp-2">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-grey-600 dark:text-grey-300 mb-4 leading-relaxed flex-1 text-sm line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <div className="flex items-center text-xs text-grey-500 dark:text-grey-400">
+                      <div className="flex items-center gap-1 mr-3">
+                        <Calendar className="h-3 w-3" />
+                        <span>{new Date(post.date).toLocaleDateString()}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                    
+                    <a
+                      href={post.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
+                    >
+                      Read More About {post.category}
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+              </HoverShadow>
+            ))}
+            
+            {/* Load more indicator for mobile */}
+            {hasMoreMobilePosts && (
+              <div className="min-w-[320px] flex items-center justify-center p-6">
+                <div className="text-center">
+                  <div className="w-12 h-12 border-2 border-tertiary border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                  <p className="text-sm text-grey-500 dark:text-grey-400">Loading more...</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop Grid Layout */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentPosts.map((post, index) => (
             <HoverShadow
               key={`${post.slug}-${index}`}
@@ -142,7 +280,7 @@ export function StaticBlogSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
                 >
-                  Read More
+                  Read More About {post.category}
                   <ExternalLink className="h-4 w-4" />
                 </a>
               </div>
@@ -150,9 +288,9 @@ export function StaticBlogSection() {
           ))}
         </div>
         
-        {/* Pagination Controls */}
+        {/* Pagination Controls - Desktop only */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4 mt-12">
+          <div className="hidden md:flex items-center justify-center gap-4 mt-12">
             <Button
               variant="outline"
               size="sm"
@@ -187,6 +325,19 @@ export function StaticBlogSection() {
             >
               Next
               <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
+        
+        {/* Mobile Load More Button (fallback) */}
+        {hasMoreMobilePosts && (
+          <div className="block md:hidden text-center mt-8">
+            <Button 
+              variant="outline" 
+              onClick={loadMoreMobilePosts}
+              className="hover:bg-grey-100 dark:hover:bg-grey-800"
+            >
+              Load More Posts ({allPosts.length - mobilePosts.length} remaining)
             </Button>
           </div>
         )}

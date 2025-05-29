@@ -99,7 +99,7 @@ graph TD
         {isLoading ? (
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-tertiary mx-auto mb-2"></div>
-            <p className="text-sm text-grey-500">Loading overview...</p>
+            <p className="text-sm text-grey-500 dark:text-grey-400">Loading overview...</p>
           </div>
         ) : svgContent ? (
           <div 
@@ -107,7 +107,7 @@ graph TD
             dangerouslySetInnerHTML={{ __html: svgContent }}
           />
         ) : (
-          <p className="text-grey-500">Overview diagram unavailable</p>
+          <p className="text-grey-500 dark:text-grey-400">Overview diagram unavailable</p>
         )}
       </div>
     )

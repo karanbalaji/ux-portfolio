@@ -79,6 +79,7 @@ export function MobileTableOfContents({ items, activeSection }: MobileTableOfCon
                           variant="ghost"
                           size="sm"
                           onClick={() => toggleSection(item.id)}
+                          aria-label={`${expandedSections.has(item.id) ? 'Collapse' : 'Expand'} ${item.label} subsections`}
                           className="h-6 w-6 p-0 mr-2 flex-shrink-0"
                         >
                           {expandedSections.has(item.id) ? (

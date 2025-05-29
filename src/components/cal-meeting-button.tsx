@@ -19,7 +19,7 @@ export function CalMeetingButton() {
       data-cal-namespace="30min"
       data-cal-link="karan-balaji/30min"
       data-cal-config='{"layout":"month_view"}'
-      className="gap-2 w-full sm:w-auto bg-green-600 hover:bg-green-700 dark:bg-green-600 dark:hover:bg-green-700 text-white shadow-lg transition-all duration-200 transform hover:scale-105 px-6 sm:px-8"
+      className="gap-2 w-full sm:w-auto bg-green-800 hover:bg-green-900 dark:bg-green-700 dark:hover:bg-green-800 text-white shadow-lg transition-all duration-200 transform hover:scale-105 px-6 sm:px-8"
     >
       Book a Meeting <Calendar className="h-4 w-4" />
     </Button>

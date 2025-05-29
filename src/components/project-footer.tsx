@@ -260,19 +260,19 @@ export function ProjectFooter({ currentProject, nextProject, previousProject }: 
         {/* Bottom Border */}
         <div className="border-t border-grey-200 dark:border-grey-800 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-grey-500 dark:text-grey-500 text-sm">
+            <p className="text-grey-500 dark:text-grey-300 text-sm">
               © {new Date().getFullYear()} Karan. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link
                 href="/privacy"
-                className="text-grey-500 dark:text-grey-500 hover:text-grey-700 dark:hover:text-grey-300 transition-colors"
+                className="text-grey-500 dark:text-grey-300 hover:text-grey-700 dark:hover:text-grey-100 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-grey-500 dark:text-grey-500 hover:text-grey-700 dark:hover:text-grey-300 transition-colors"
+                className="text-grey-500 dark:text-grey-300 hover:text-grey-700 dark:hover:text-grey-100 transition-colors"
               >
                 Terms of Service
               </Link>

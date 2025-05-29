@@ -57,7 +57,7 @@ function MermaidModal({ isOpen, onClose, diagram, title, id }: MermaidModalProps
           console.error('Mermaid rendering failed:', error)
           if (modalRef.current) {
             modalRef.current.innerHTML = `
-              <div class="p-8 text-center text-grey-500">
+              <div class="p-8 text-center text-grey-500 dark:text-grey-400">
                 <p class="text-lg font-medium mb-2">Diagram could not be rendered</p>
                 <p class="text-sm">Please check console for details</p>
               </div>
@@ -479,7 +479,7 @@ export default function UserFlows() {
             {isLoading && (
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-tertiary mx-auto mb-2"></div>
-                <p className="text-sm text-grey-500">Loading diagram...</p>
+                <p className="text-sm text-grey-500 dark:text-grey-400">Loading diagram...</p>
               </div>
             )}
             

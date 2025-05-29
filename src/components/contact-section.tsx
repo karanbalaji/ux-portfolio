@@ -152,7 +152,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="relative py-20 bg-grey-50/50 dark:bg-grey-900/30 overflow-hidden">
       {/* 3D Marquee Background */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-5">
+      <div className="absolute inset-0 opacity-20 dark:opacity-15">
         <ThreeDMarquee images={marqueeImages} className="h-full w-full" />
       </div>
       
@@ -255,7 +255,7 @@ export function ContactSection() {
               
               <div className="space-y-2">
                 <Label htmlFor="attachment" className="text-grey-700 dark:text-grey-300">
-                  Attachment <span className="text-sm text-grey-500">(Optional)</span>
+                  Attachment <span className="text-sm text-grey-500 dark:text-grey-400">(Optional)</span>
                 </Label>
                 <div className="space-y-3">
                   <div className="relative">
