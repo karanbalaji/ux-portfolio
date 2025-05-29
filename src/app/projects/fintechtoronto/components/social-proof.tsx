@@ -31,6 +31,7 @@ export default function SocialProof() {
                       fill
                       className="object-contain"
                       priority
+                      sizes="(max-width: 1024px) 384px, 50vw"
                     />
                   </div>
                   <p className="text-sm text-grey-700 dark:text-grey-50 text-center italic font-medium">
@@ -142,6 +143,7 @@ export default function SocialProof() {
                     fill
                     className="object-contain"
                     priority
+                    sizes="(max-width: 1024px) 384px, 50vw"
                   />
                 </div>
                 <p className="text-sm text-grey-700 dark:text-grey-50 text-center italic font-medium">

@@ -53,6 +53,7 @@ export default function PocketHealthHero() {
             fill
             className="object-cover"
             priority
+            sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc(100vw - 4rem), 1152px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         </div>
