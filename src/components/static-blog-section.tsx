@@ -81,20 +81,20 @@ export function StaticBlogSection() {
 
   if (loading) {
     return (
-      <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
+      <section id="blog" className="py-20 bg-white dark:bg-grey-900">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
           <div className="flex flex-col items-center text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
-            <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+            <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px]">
               Thoughts on UX design, frontend development, and the intersection of design and technology.
             </p>
           </div>
           
           {/* Mobile Swipeable Loading */}
-          <div className="block md:hidden overflow-x-auto scrollbar-hide">
+          <div className="block md:hidden overflow-x-auto scrollbar-hide mb-8">
             <div className="flex gap-4 pb-4" style={{ scrollSnapType: 'x mandatory' }}>
               {[1, 2, 3, 4, 5, 6].map((index) => (
-                <div key={index} className="min-w-[320px] bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6" style={{ scrollSnapAlign: 'start' }}>
+                <div key={index} className="min-w-[320px] bg-grey-50 dark:bg-grey-800 rounded-xl overflow-hidden shadow-sm p-6 border border-grey-200 dark:border-grey-700" style={{ scrollSnapAlign: 'start' }}>
                   <div className="animate-pulse">
                     <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-20"></div>
                     <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-3 w-full"></div>
@@ -114,7 +114,7 @@ export function StaticBlogSection() {
           {/* Desktop Grid Loading */}
           <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((index) => (
-              <div key={index} className="h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden shadow-sm p-6">
+              <div key={index} className="h-full bg-grey-50 dark:bg-grey-800 rounded-xl overflow-hidden shadow-sm p-6 border border-grey-200 dark:border-grey-700">
                 <div className="animate-pulse">
                   <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-4 w-20"></div>
                   <div className="h-6 bg-grey-200 dark:bg-grey-700 rounded mb-3 w-full"></div>
@@ -135,15 +135,15 @@ export function StaticBlogSection() {
   }
 
   return (
-    <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
+    <section id="blog" className="py-20 bg-white dark:bg-grey-900">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-grey-300 max-w-[600px]">
+          <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px]">
             Thoughts on UX design, frontend development, and the intersection of design and technology.
           </p>
           {allPosts.length > 0 && (
-            <p className="text-sm text-grey-500 dark:text-grey-400 mt-2">
+            <p className="text-sm text-grey-600 dark:text-grey-300 mt-2">
               <span className="hidden md:inline">
                 Showing {((currentPage - 1) * postsPerPage) + 1}-{Math.min(currentPage * postsPerPage, allPosts.length)} of {allPosts.length} posts
               </span>
@@ -155,11 +155,11 @@ export function StaticBlogSection() {
           
           {/* Mobile swipe indicator */}
           <div className="block md:hidden mt-4">
-            <p className="text-xs text-grey-400 dark:text-grey-500 flex items-center gap-2">
+            <p className="text-xs text-grey-600 dark:text-grey-400 flex items-center gap-2">
               <span>Swipe to explore</span>
               <span className="text-lg">→</span>
               {hasMoreMobilePosts && (
-                <span className="ml-2 px-2 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs">
+                <span className="ml-2 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-medium">
                   +{allPosts.length - mobilePosts.length} more
                 </span>
               )}
@@ -168,7 +168,7 @@ export function StaticBlogSection() {
         </div>
         
         {/* Mobile Swipeable Layout */}
-        <div 
+        <div
           ref={mobileScrollRef}
           className="block md:hidden overflow-x-auto scrollbar-hide"
           onScroll={handleMobileScroll}
@@ -179,27 +179,27 @@ export function StaticBlogSection() {
                 key={`${post.slug}-${index}`}
                 as="article"
                 containerClassName="min-w-[320px] rounded-xl"
-                className="group min-w-[320px] bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
+                className="group min-w-[320px] bg-grey-50 dark:bg-grey-800 rounded-xl overflow-hidden border border-grey-200 dark:border-grey-700"
                 shadowIntensity="medium"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 <div className="p-6 flex flex-col h-full">
                   <div className="mb-4">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-200 dark:bg-grey-700 text-grey-800 dark:text-grey-200 rounded-full">
                       {post.category}
                     </span>
                   </div>
                   
-                  <h3 className="text-lg font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-tertiary transition-colors leading-tight line-clamp-2">
+                  <h3 className="text-lg font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight line-clamp-2">
                     {post.title}
                   </h3>
                   
-                  <p className="text-grey-600 dark:text-grey-300 mb-4 leading-relaxed flex-1 text-sm line-clamp-3">
+                  <p className="text-grey-700 dark:text-grey-200 mb-4 leading-relaxed flex-1 text-sm line-clamp-3">
                     {post.excerpt}
                   </p>
                   
-                  <div className="space-y-3">
-                    <div className="flex items-center text-xs text-grey-500 dark:text-grey-400">
+                  <div className="mb-4">
+                    <div className="flex items-center text-xs text-grey-600 dark:text-grey-300">
                       <div className="flex items-center gap-1 mr-3">
                         <Calendar className="h-3 w-3" />
                         <span>{new Date(post.date).toLocaleDateString()}</span>
@@ -214,7 +214,7 @@ export function StaticBlogSection() {
                       href={post.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
+                      className="inline-flex items-center gap-2 text-grey-800 dark:text-grey-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium group-hover:gap-3 duration-300"
                     >
                       Read More About {post.category}
                       <ExternalLink className="h-4 w-4" />
@@ -228,8 +228,8 @@ export function StaticBlogSection() {
             {hasMoreMobilePosts && (
               <div className="min-w-[320px] flex items-center justify-center p-6">
                 <div className="text-center">
-                  <div className="w-12 h-12 border-2 border-tertiary border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-                  <p className="text-sm text-grey-500 dark:text-grey-400">Loading more...</p>
+                  <div className="w-12 h-12 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+                  <p className="text-sm text-grey-600 dark:text-grey-300">Loading more...</p>
                 </div>
               </div>
             )}
@@ -243,25 +243,25 @@ export function StaticBlogSection() {
               key={`${post.slug}-${index}`}
               as="article"
               containerClassName="h-full rounded-xl"
-              className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden"
+              className="group h-full bg-grey-50 dark:bg-grey-800 rounded-xl overflow-hidden border border-grey-200 dark:border-grey-700"
               shadowIntensity="medium"
             >
               <div className="p-6 flex flex-col h-full">
                 <div className="mb-4">
-                  <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full">
+                  <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-200 dark:bg-grey-700 text-grey-800 dark:text-grey-200 rounded-full">
                     {post.category}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-tertiary transition-colors leading-tight">
+                <h3 className="text-xl font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
                   {post.title}
                 </h3>
                 
-                <p className="text-grey-600 dark:text-grey-300 mb-4 leading-relaxed flex-1">
+                <p className="text-grey-700 dark:text-grey-200 mb-4 leading-relaxed flex-1">
                   {post.excerpt}
                 </p>
                 
-                <div className="flex items-center justify-between text-sm text-grey-500 dark:text-grey-400 mb-4">
+                <div className="flex items-center justify-between text-sm text-grey-600 dark:text-grey-300 mb-4">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -278,7 +278,7 @@ export function StaticBlogSection() {
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300"
+                  className="inline-flex items-center gap-2 text-grey-800 dark:text-grey-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium group-hover:gap-3 duration-300"
                 >
                   Read More About {post.category}
                   <ExternalLink className="h-4 w-4" />
@@ -329,7 +329,7 @@ export function StaticBlogSection() {
           </div>
         )}
         
-        {/* Mobile Load More Button (fallback) */}
+        {/* Load more button for mobile */}
         {hasMoreMobilePosts && (
           <div className="block md:hidden text-center mt-8">
             <Button 

@@ -43,11 +43,11 @@ export async function BlogSectionServer() {
   }
 
   return (
-    <section id="blog" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
+    <section id="blog" className="py-20 bg-white dark:bg-grey-900">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
+          <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px]">
             Thoughts on UX design, frontend development, and the intersection of design and technology.
           </p>
         </div>
@@ -64,25 +64,25 @@ export async function BlogSectionServer() {
               <HoverShadow
                 as="article"
                 containerClassName="h-full rounded-xl"
-                className="group h-full bg-background dark:bg-grey-900 rounded-xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] border border-transparent hover:shadow-lg"
+                className="group h-full bg-grey-50 dark:bg-grey-800 rounded-xl overflow-hidden cursor-pointer hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] border border-grey-200 dark:border-grey-700 hover:shadow-lg"
                 shadowIntensity="medium"
               >
               <div className="p-6 flex flex-col h-full">
                 <div className="mb-4">
-                  <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-100 dark:bg-grey-800 text-grey-700 dark:text-grey-300 rounded-full">
+                  <span className="inline-block px-3 py-1 text-xs font-medium bg-grey-200 dark:bg-grey-700 text-grey-800 dark:text-grey-200 rounded-full">
                     {post.category}
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-tertiary transition-colors leading-tight">
+                <h3 className="text-xl font-semibold mb-3 text-grey-900 dark:text-grey-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
                   {post.title}
                 </h3>
                 
-                <p className="text-grey-600 dark:text-white mb-4 leading-relaxed flex-1">
+                <p className="text-grey-700 dark:text-grey-200 mb-4 leading-relaxed flex-1">
                   {post.excerpt}
                 </p>
                 
-                <div className="flex items-center justify-between text-sm text-grey-500 dark:text-grey-400 mb-4">
+                <div className="flex items-center justify-between text-sm text-grey-600 dark:text-grey-300 mb-4">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -95,7 +95,7 @@ export async function BlogSectionServer() {
                   </div>
                 </div>
                 
-                <div className="inline-flex items-center gap-2 text-grey-700 dark:text-grey-300 hover:text-tertiary transition-colors font-medium group-hover:gap-3 duration-300 pointer-events-none">
+                <div className="inline-flex items-center gap-2 text-grey-800 dark:text-grey-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium group-hover:gap-3 duration-300 pointer-events-none">
                   Read More
                   <ExternalLink className="h-4 w-4" />
                 </div>

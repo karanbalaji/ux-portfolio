@@ -14,11 +14,20 @@ const navItems = [
 
 export function BottomNavigation() {
   const [activeSection, setActiveSection] = useState("#home")
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => item.href.replace("#", ""))
       const scrollPosition = window.scrollY + 100
+
+      // Check if user has scrolled past the about section
+      const aboutElement = document.getElementById("about")
+      if (aboutElement) {
+        const aboutTop = aboutElement.offsetTop
+        // Show navigation when user scrolls to the about section
+        setIsVisible(scrollPosition >= aboutTop)
+      }
 
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -35,6 +44,7 @@ export function BottomNavigation() {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll() // Check initial state
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -46,7 +56,10 @@ export function BottomNavigation() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-border md:hidden">
+    <nav className={cn(
+      "fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-t border-border md:hidden transition-transform duration-300 ease-in-out",
+      isVisible ? "translate-y-0" : "translate-y-full"
+    )}>
       <div className="flex items-center justify-around py-2 px-4">
         {navItems.map((item) => {
           const Icon = item.icon

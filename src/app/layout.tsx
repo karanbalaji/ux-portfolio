@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Karan Balaji - A Design Engineer from Toronto",
-  description: "Design Engineer from Toronto specializing in user-centered design, frontend development, and growth engineering. Expert in React, Next.js, conversion optimization, and creating data-driven digital experiences. Portfolio featuring PocketHealth, FintechToronto, and innovative design systems.",
-  keywords: "Design Engineer, UX Designer, Frontend Developer, Toronto, React, Next.js, User Experience, Conversion Optimization, Growth Engineering, Design Systems, Portfolio, PocketHealth, FintechToronto",
+  title: "Karan Balaji - Design Engineer from Toronto",
+  description: "Design Engineer from Toronto specializing in rapid prototyping with Cursor, Windsurf, ShadCN, and Next.js. Expert in conversion optimization using PostHog, A/B testing, and data-driven experimentation. Building scalable design systems and AI-powered digital experiences.",
+  keywords: "Design Engineer, UX Designer, Frontend Developer, Toronto, React, Next.js, ShadCN, Cursor, Windsurf, PostHog, A/B Testing, Rapid Prototyping, User Experience, Conversion Optimization, Growth Engineering, Design Systems, Portfolio, PocketHealth, FintechToronto, AI Integration",
   authors: [{ name: "Karan Balaji" }],
   creator: "Karan Balaji",
   publisher: "Karan Balaji",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Karan Balaji - Design Engineer from Toronto",
-    description: "Design Engineer & UX Designer specializing in user-centered design, frontend development, and growth engineering. View my portfolio of conversion-driven digital experiences.",
+    description: "Design Engineer specializing in rapid prototyping with modern tools like Cursor, ShadCN, and Next.js. Expert in conversion optimization through PostHog experimentation and data-driven design systems.",
     url: 'https://karanbalaji.com',
     siteName: 'Karan Balaji Portfolio',
     type: 'website',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Karan Balaji - Design Engineer from Toronto",
-    description: "Design Engineer & UX Designer specializing in user-centered design, frontend development, and growth engineering.",
+    description: "Design Engineer specializing in rapid prototyping with Cursor, ShadCN, and Next.js. Expert in PostHog experimentation and conversion optimization.",
     creator: '@karanbalaji',
   },
   robots: {

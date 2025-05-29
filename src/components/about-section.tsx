@@ -1,348 +1,194 @@
 "use client"
 
-import { Code, Layout, Palette, Award, Zap, Users, TrendingUp, ExternalLink, Star, ChevronLeft, ChevronRight, Smartphone } from "lucide-react"
+import { Code, TrendingUp, Users, Award, ExternalLink, MousePointer2, Sparkles } from "lucide-react"
 import { HoverShadow } from "@/components/ui/hover-shadow"
-
 import Image from "next/image"
-import { useState, useEffect } from "react"
 
 export function AboutSection() {
-  const [currentCardIndex, setCurrentCardIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-
-  const leadershipCards = [
+  const highlights = [
     {
-      title: "AI Collective Toronto Chapter Leader",
-      description: "Leading Toronto's GenAI community with 500+ professionals",
-      stats: "297+ sign-ups, 170+ check-ins, 65% Toronto attendees",
-      icon: Users,
-      color: "from-blue-500 to-purple-600",
-      image: "/images/about/gen-ai-uoft-meetup.jpg",
-      imageAlt: "AI Collective Toronto meetup at University of Toronto",
-      link: "https://www.linkedin.com/feed/update/urn:li:activity:7303931850362617856/"
-    },
-    {
-      title: "Guest Speaker at University of Toronto",
-      description: "Talking at UoT on HCI & A/B Testing to Master's and undergraduate students",
-      stats: "Covering Fitts' Law, Miller's Law, Peak-End Rule",
-      icon: Award,
-      color: "from-green-500 to-teal-600",
-      image: "/images/about/uoft-guest-speaker-1.jpg",
-      imageAlt: "Karan speaking at University of Toronto on HCI and A/B Testing",
-      link: "https://www.linkedin.com/feed/update/urn:li:activity:7255277390459813888/"
-    },
-    {
-      title: "Fintech + AI Discussion Meetup",
-      description: "Organized discussion-style meetup at Next AI office for Toronto's fintech ecosystem",
-      stats: "106+ RSVPs & attendees, 6 discussion groups, 40%+ organic traffic boost",
       icon: TrendingUp,
-      color: "from-purple-500 to-pink-600",
-      image: "/images/projects/fintech-toronto/fintech-meetup.jpeg",
-      imageAlt: "Karan leading Fintech + AI discussion-style meetup at Next AI office",
-      link: "https://www.linkedin.com/posts/karanbalaji_ai-tech-toronto-activity-7328556873073258497-8zak"
+      title: "650K → 1.1M Conversions",
+      description: "Boosted sign-up conversions at Pocket Health using experimentation tools and data-driven UX optimization"
     },
     {
-      title: "Shopify Builder Sundays Demo",
-      description: "Showcased rapid design engineering using ShadCN, MagicUI, and AI-assisted development",
-      stats: "Mobile-first design, AI-assisted workflow, 25%+ sign-up increase",
-      icon: Smartphone,
-      color: "from-orange-500 to-red-600",
-      image: "/images/projects/fintech-toronto/fintech-shopify-demo.jpeg",
-      imageAlt: "Karan presenting fintechtoronto.com at Shopify Builder Sundays showcase",
-      link: "https://www.linkedin.com/posts/karanbalaji_ai-tech-toronto-activity-7322624364573540352-jN_Q"
+      icon: Users,
+      title: "AI Community Leader",
+      description: "Leading Toronto's GenAI community with 500+ professionals, organizing cutting-edge tech meetups"
     },
     {
-      title: "Top 50 Growth Design Mentor",
-      description: "ADPList recognition for Oct-Dec 2024 & Jan-Mar 2025",
-      stats: "Mentoring UX Engineers globally",
-      icon: Star,
-      color: "from-yellow-500 to-orange-600",
-      image: null,
-      imageAlt: "Top 50 Growth Design Mentor certificate",
-      isPdf: true,
-      link: "https://adplist.org/mentors/karan-balaji"
+      icon: Award,
+      title: "Top 50 Mentor",
+      description: "Recognized as Top 50 Growth Design Mentor on ADPList, mentoring global UX Engineers"
     }
   ]
 
-  // Auto-rotate carousel with smooth transitions
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleCardTransition((prev) => (prev + 1) % leadershipCards.length)
-    }, 6000) // Change card every 6 seconds
+  const skills = [
+    { icon: MousePointer2, name: "AI-Powered IDEs", description: "Currently: Cursor + Windsurf" },
+    { icon: Code, name: "Component Libraries", description: "Currently: ShadCN + Next.js" },
+    { icon: TrendingUp, name: "Analytics & Testing", description: "Currently: PostHog + others" },
+    { icon: Sparkles, name: "AI Integration", description: "Workflow optimization tools" }
+  ]
 
-    return () => clearInterval(interval)
-  }, [leadershipCards.length])
-
-  const handleCardTransition = (newIndex: number | ((prev: number) => number)) => {
-    setIsTransitioning(true)
-    setTimeout(() => {
-      if (typeof newIndex === 'function') {
-        setCurrentCardIndex(newIndex)
-      } else {
-        setCurrentCardIndex(newIndex)
-      }
-      setIsTransitioning(false)
-    }, 150) // Half of the transition duration
-  }
-
-  const nextCard = () => {
-    handleCardTransition((prev) => (prev + 1) % leadershipCards.length)
-  }
-
-  const prevCard = () => {
-    handleCardTransition((prev) => (prev - 1 + leadershipCards.length) % leadershipCards.length)
-  }
-
-  const currentCard = leadershipCards[currentCardIndex]
-  const IconComponent = currentCard.icon
+  const achievements = [
+    {
+      title: "AI Collective Toronto Leader",
+      image: "/images/about/gen-ai-uoft-meetup.jpg",
+      alt: "Large group photo of AI professionals at University of Toronto GenAI meetup event",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7303931850362617856/"
+    },
+    {
+      title: "University of Toronto Speaker",
+      image: "/images/about/uoft-guest-speaker-1.jpg",
+      alt: "Karan presenting on HCI and A/B testing to students at University of Toronto classroom",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7255277390459813888/"
+    },
+    {
+      title: "Fintech Meetup Organizer",
+      image: "/images/projects/fintech-toronto/fintech-meetup.jpeg",
+      alt: "Professional networking event at Next AI office with fintech entrepreneurs and developers",
+      link: "https://www.linkedin.com/posts/karanbalaji_ai-tech-toronto-activity-7328556873073258497-8zak"
+    }
+  ]
 
   return (
-    <section id="about" role="main" className="py-20 bg-grey-50/50 dark:bg-grey-900/30">
+    <section id="about" role="main" className="py-20 bg-white dark:bg-grey-900">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">About Me</h2>
-          <p className="text-lg md:text-xl text-grey-600 dark:text-white max-w-[600px]">
-            Design Engineer with proven expertise in rapid prototyping and driving growth through experimentation.
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">
+            About Me
+          </h2>
+          <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px] mx-auto">
+            Design Engineer specializing in rapid prototyping with modern AI-powered tools and conversion optimization through data-driven experimentation.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - About Content */}
-          <div className="order-1 lg:order-1">
-            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-white">
-              I&apos;m a Design Engineer selected into <strong>Next AI</strong> (Canada&apos;s top AI accelerator with &lt;1% acceptance rate). 
-              I specialize in rapidly building prototypes from design to frontend code using scalable design system components and measuring outcomes with experimentation tools.
-            </p>
-            <p className="text-lg mb-6 leading-relaxed text-grey-700 dark:text-white">
-              At <strong>Pocket Health</strong> (Series B), I boosted sign-up conversions from 650K to 1.1M through data-driven UX improvements and A/B testing using tools like Hotjar, Google Optimize, and VWO. 
-              I&apos;ve built 100+ responsive templates and improved conversion rates by 17% monthly through systematic experimentation.
-            </p>
-            <p className="text-lg mb-8 leading-relaxed text-grey-700 dark:text-white">
-              I&apos;m the <strong>AI Collective Toronto Chapter Leader</strong>, organizing GenAI meetups that bring together 500+ professionals. 
-              I also serve as a <strong>Guest Speaker at University of Toronto</strong> on HCI and A/B testing, and mentor UX Engineers on ADPList where I was recognized as a <strong>Top 50 Growth Design Mentor</strong> for multiple quarters.
-            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <Code className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>Rapid Prototyping</span>
-              </HoverShadow>
-              
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <Layout className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>Design Systems</span>
-              </HoverShadow>
-              
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <TrendingUp className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>A/B Testing & Analytics</span>
-              </HoverShadow>
-              
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <Zap className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>GenAI Integration</span>
-              </HoverShadow>
-              
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <Palette className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>UX Research & Testing</span>
-              </HoverShadow>
-              
-              <HoverShadow
-                as="div"
-                containerClassName="rounded-lg"
-                className="flex items-center gap-3 p-3 bg-background dark:bg-grey-800 text-grey-800 dark:text-grey-100"
-                shadowIntensity="light"
-              >
-                <Users className="h-5 w-5 text-grey-600 dark:text-grey-400" />
-                <span>Community Leadership</span>
-              </HoverShadow>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {/* About Text - Takes 2 columns */}
+          <div className="lg:col-span-2">
+            <div className="prose prose-lg max-w-none text-grey-800 dark:text-grey-100">
+              <p className="mb-6 leading-relaxed">
+                I&apos;m a Design Engineer selected into <strong>Next AI</strong> (Canada&apos;s top AI accelerator with &lt;1% acceptance rate). 
+                I specialize in rapidly building prototypes using modern AI-powered development tools and component libraries, 
+                then optimizing conversions through comprehensive experimentation platforms.
+              </p>
+              <p className="mb-6 leading-relaxed">
+                At <strong>Pocket Health</strong> (Series B), I boosted sign-up conversions from 650K to 1.1M using advanced A/B testing and data-driven UX improvements. 
+                I build scalable <strong>React applications</strong> with reusable design system components for rapid iteration across any tech stack.
+              </p>
             </div>
 
-            {/* Key Achievements */}
-            <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-              <h3 className="font-semibold text-grey-900 dark:text-grey-50 mb-3">Key Achievements</h3>
-              <ul className="space-y-2 text-sm text-grey-700 dark:text-grey-300">
-                <li>• <strong>650K → 1.1M</strong> sign-up conversions at Pocket Health</li>
-                <li>• <strong>35% increase</strong> in demo conversions through design optimization</li>
-                <li>• <strong>17% monthly</strong> conversion rate improvements via A/B testing</li>
-                <li>• <strong>SEO scores: 55% → 92%</strong> through technical optimization</li>
-                <li>• <strong>PostHog, VWO, Google Optimize</strong> experimentation expertise</li>
-              </ul>
+            {/* Modern Tools Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+              {skills.map((skill, index) => {
+                const IconComponent = skill.icon
+                return (
+                  <HoverShadow
+                    key={index}
+                    as="div"
+                    containerClassName="rounded-lg"
+                    className="flex items-start gap-3 p-4 bg-grey-50 dark:bg-grey-800 text-grey-900 dark:text-grey-50 border border-grey-200 dark:border-grey-700"
+                    shadowIntensity="light"
+                  >
+                    <IconComponent className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-sm font-semibold block">{skill.name}</span>
+                      <span className="text-xs text-grey-600 dark:text-grey-300">{skill.description}</span>
+                    </div>
+                  </HoverShadow>
+                )
+              })}
             </div>
           </div>
 
-          {/* Right Column - Leadership Carousel */}
-          <div className="order-2 lg:order-2">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-grey-900 dark:text-grey-50 mb-2">Leadership & Recognition</h3>
-              <p className="text-sm text-grey-600 dark:text-grey-300">Click to view achievements</p>
+          {/* Mentorship Reviews - Takes 1 column */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-semibold text-grey-900 dark:text-grey-50 mb-4">
+              Mentorship Reviews
+            </h3>
+            <div className="rounded-xl overflow-hidden shadow-lg border border-grey-200 dark:border-grey-700 h-[300px]">
+              <iframe 
+                src="https://adplist.org/widgets/reviews?src=karan-balaji" 
+                title="ADPList Mentorship Reviews" 
+                width="100%" 
+                height="100%" 
+                loading="lazy" 
+                style={{ border: 0 }}
+                className="w-full h-full"
+              />
             </div>
-            
-            <div className="mb-8">
+          </div>
+        </div>
+
+        {/* Key Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {highlights.map((highlight, index) => {
+            const IconComponent = highlight.icon
+            return (
+              <HoverShadow
+                key={index}
+                as="div"
+                containerClassName="rounded-xl"
+                className="p-6 bg-grey-50 dark:bg-grey-800 text-center border border-grey-200 dark:border-grey-700"
+                shadowIntensity="medium"
+              >
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
+                  <IconComponent className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-grey-900 dark:text-grey-50 mb-2">
+                  {highlight.title}
+                </h3>
+                <p className="text-sm text-grey-700 dark:text-grey-200">
+                  {highlight.description}
+                </p>
+              </HoverShadow>
+            )
+          })}
+        </div>
+
+        {/* Recent Achievements */}
+        <div>
+          <h3 className="text-xl font-semibold text-grey-900 dark:text-grey-50 mb-6 text-center">
+            Recent Achievements
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {achievements.map((achievement, index) => (
               <a
-                href={currentCard.link}
+                key={index}
+                href={achievement.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block transition-transform hover:scale-[1.02]"
+                className="group"
               >
                 <HoverShadow
                   as="div"
                   containerClassName="rounded-xl"
-                  className="relative bg-background dark:bg-grey-900 rounded-xl border border-grey-200 dark:border-grey-700 overflow-hidden cursor-pointer"
-                  shadowIntensity="strong"
+                  className="relative overflow-hidden bg-grey-50 dark:bg-grey-800 border border-grey-200 dark:border-grey-700"
+                  shadowIntensity="medium"
                 >
-                  {/* Image/Visual Section */}
-                  <div className="relative h-64 bg-grey-100 dark:bg-grey-700 overflow-hidden">
-                    <div className={`absolute inset-0 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`}>
-                      {currentCard.isPdf ? (
-                        <div className={`absolute inset-0 flex items-center justify-center bg-gradient-to-br ${currentCard.color}`}>
-                          <div className="text-center text-white">
-                            <IconComponent className="h-16 w-16 mx-auto mb-3" />
-                            <p className="text-lg font-medium">Top 50 Mentor</p>
-                            <p className="text-sm opacity-90">ADPList Recognition</p>
-                          </div>
-                        </div>
-                      ) : (
-                        currentCard.image && (
-                          <Image
-                            src={currentCard.image}
-                            alt={currentCard.imageAlt}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                          />
-                        )
-                      )}
-                    </div>
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={achievement.image}
+                      alt={achievement.alt}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    
-                    {/* Navigation Buttons */}
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault()
-                        prevCard()
-                      }}
-                      aria-label="Previous achievement card"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
-                    >
-                      <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault()
-                        nextCard()
-                      }}
-                      aria-label="Next achievement card"
-                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10"
-                    >
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-
-                    {/* Icon Badge */}
-                    {!currentCard.isPdf && (
-                      <div className={`absolute top-4 left-4 w-12 h-12 rounded-lg bg-gradient-to-r ${currentCard.color} flex items-center justify-center transition-all duration-300 ${isTransitioning ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}>
-                        <IconComponent className="h-6 w-6 text-white" />
-                      </div>
-                    )}
-
-                    {/* External Link Icon */}
-                    <div className="absolute top-4 right-4">
-                      <ExternalLink className="h-5 w-5 text-white/80" />
+                    <div className="absolute top-3 right-3">
+                      <ExternalLink className="h-4 w-4 text-white/90" />
                     </div>
                   </div>
-                  
-                  {/* Content Section */}
-                  <div className="p-6">
-                    <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-                      <h4 className="font-semibold text-grey-900 dark:text-grey-50 mb-2 text-lg">{currentCard.title}</h4>
-                      <p className="text-sm text-grey-600 dark:text-grey-300 mb-3">{currentCard.description}</p>
-                      <p className="text-xs text-grey-600 dark:text-grey-300 font-medium">{currentCard.stats}</p>
-                    </div>
+                  <div className="p-4">
+                    <h4 className="font-medium text-grey-900 dark:text-grey-50 text-sm">
+                      {achievement.title}
+                    </h4>
                   </div>
                 </HoverShadow>
               </a>
-
-              {/* Progress Indicator - Outside the card */}
-              <div className="mt-4 space-y-3">
-                {/* Current achievement indicator */}
-                <div className="text-center">
-                  <span className="text-sm text-grey-600 dark:text-grey-300">
-                    {currentCardIndex + 1} of {leadershipCards.length}
-                  </span>
-                </div>
-                
-                {/* Progress bar */}
-                <div className="w-full bg-grey-200 dark:bg-grey-700 rounded-full h-1">
-                  <div 
-                    className="bg-grey-900 dark:bg-grey-100 h-1 rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${((currentCardIndex + 1) / leadershipCards.length) * 100}%` }}
-                  />
-                </div>
-                
-                {/* Achievement titles as navigation */}
-                <div className="flex justify-center gap-1 mt-3">
-                  {leadershipCards.map((card, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleCardTransition(index)}
-                      aria-label={`Go to achievement ${index + 1}: ${card.title}`}
-                      className={`w-10 h-10 rounded text-xs font-medium transition-all duration-300 flex items-center justify-center ${
-                        index === currentCardIndex 
-                          ? 'bg-grey-900 dark:bg-grey-100 text-white dark:text-grey-900' 
-                          : 'bg-grey-200 dark:bg-grey-700 text-grey-600 dark:text-grey-300 hover:bg-grey-300 dark:hover:bg-grey-600'
-                      }`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Mentorship Reviews - Right Column */}
-            <div>
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-grey-900 dark:text-grey-50 mb-2">Mentorship Reviews</h3>
-                <p className="text-sm text-grey-600 dark:text-grey-300">What mentees say about working with me</p>
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-lg border border-grey-200 dark:border-grey-700">
-                <iframe 
-                  src="https://adplist.org/widgets/reviews?src=karan-balaji" 
-                  title="ADPList Mentorship Reviews" 
-                  width="100%" 
-                  height="400px" 
-                  loading="lazy" 
-                  style={{ border: 0 }}
-                  className="w-full"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
