@@ -65,6 +65,7 @@ export function ProjectsSection() {
                     width="1000"
                       className="w-full h-auto object-contain rounded-xl group-hover/card:shadow-xl"
                     alt={project.title}
+                    sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) 480px, 550px"
                   />
                 </CardItem>
                 
