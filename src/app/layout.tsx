@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Mida A/B Testing Script */}
+        <Script
+          src="https://cdn.mida.so/js/optimize.js?key=nvmGW7eJdkyV9Rw81xXQKA"
+          strategy="afterInteractive"
+          async
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
       >
