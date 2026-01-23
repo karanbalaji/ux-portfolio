@@ -54,24 +54,24 @@ export function ProjectFooter({ currentProject, nextProject, previousProject }: 
               {/* Previous Project */}
               <div className="space-y-4">
                 {previousProject ? (
-                  <HoverShadow
-                    as={Link}
-                    href={previousProject.href}
-                    containerClassName="rounded-lg"
-                    className="group flex items-start gap-4 p-6 rounded-lg bg-white dark:bg-grey-800"
-                    shadowIntensity="light"
-                  >
-                    <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors mt-1 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-1">Previous Project</p>
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {previousProject.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {previousProject.description}
-                      </p>
-                    </div>
-                  </HoverShadow>
+                  <Link href={previousProject.href}>
+                    <HoverShadow
+                      containerClassName="rounded-lg"
+                      className="group flex items-start gap-4 p-6 rounded-lg bg-white dark:bg-grey-800"
+                      shadowIntensity="light"
+                    >
+                      <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors mt-1 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm text-muted-foreground mb-1">Previous Project</p>
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {previousProject.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {previousProject.description}
+                        </p>
+                      </div>
+                    </HoverShadow>
+                  </Link>
                 ) : (
                   <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-800/50">
                     <p className="text-muted-foreground text-center">First project in portfolio</p>
@@ -82,24 +82,24 @@ export function ProjectFooter({ currentProject, nextProject, previousProject }: 
               {/* Next Project */}
               <div className="space-y-4">
                 {nextProject ? (
-                  <HoverShadow
-                    as={Link}
-                    href={nextProject.href}
-                    containerClassName="rounded-lg"
-                    className="group flex items-start gap-4 p-6 rounded-lg bg-white dark:bg-grey-800 text-right"
-                    shadowIntensity="light"
-                  >
-                    <div className="flex-1">
-                      <p className="text-sm text-muted-foreground mb-1">Next Project</p>
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {nextProject.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mt-2">
-                        {nextProject.description}
-                      </p>
-                    </div>
-                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors mt-1 flex-shrink-0" />
-                  </HoverShadow>
+                  <Link href={nextProject.href}>
+                    <HoverShadow
+                      containerClassName="rounded-lg"
+                      className="group flex items-start gap-4 p-6 rounded-lg bg-white dark:bg-grey-800 text-right"
+                      shadowIntensity="light"
+                    >
+                      <div className="flex-1">
+                        <p className="text-sm text-muted-foreground mb-1">Next Project</p>
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {nextProject.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {nextProject.description}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors mt-1 flex-shrink-0" />
+                    </HoverShadow>
+                  </Link>
                 ) : (
                   <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-800 bg-grey-50 dark:bg-grey-800/50">
                     <p className="text-muted-foreground text-center">Last project in portfolio</p>
