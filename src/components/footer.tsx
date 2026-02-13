@@ -74,7 +74,7 @@ export function Footer() {
               Karan
             </Link>
             <p className="mt-4 text-grey-600 dark:text-grey-400 leading-relaxed">
-              UX Engineer & Designer passionate about creating meaningful digital experiences.
+              AI Developer building intelligent applications with design-forward thinking.
             </p>
             <div className="flex gap-4 mt-6">
               {socialLinks.map((link) => (

@@ -4,6 +4,8 @@ import { Calendar, Clock, ExternalLink, ChevronLeft, ChevronRight } from "lucide
 import { Button } from "@/components/ui/button"
 import { HoverShadow } from "@/components/ui/hover-shadow"
 import { useEffect, useState, useRef } from "react"
+import { useQuery } from "convex/react"
+import { api } from "@/../convex/_generated/api"
 
 interface BlogPost {
   title: string
@@ -16,6 +18,9 @@ interface BlogPost {
 }
 
 export function StaticBlogSection() {
+  // Fetch posts from Convex
+  const convexPosts = useQuery(api.blog.getPosts, { limit: 100 })
+
   const [allPosts, setAllPosts] = useState<BlogPost[]>([])
   const [currentPosts, setCurrentPosts] = useState<BlogPost[]>([])
   const [mobilePosts, setMobilePosts] = useState<BlogPost[]>([]) // For mobile infinite loading
@@ -26,20 +31,24 @@ export function StaticBlogSection() {
   const mobileScrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Fetch from static JSON file
-    fetch('/blog-data.json')
-      .then(res => res.json())
-      .then((data: BlogPost[]) => {
-        setAllPosts(data)
-        setCurrentPosts(data.slice(0, postsPerPage))
-        setMobilePosts(data.slice(0, postsPerPage)) // Initialize mobile posts
-        setLoading(false)
-      })
-      .catch(error => {
-        console.error('Error loading blog data:', error)
-        setLoading(false)
-      })
-  }, [])
+    if (convexPosts) {
+      // Transform Convex posts to match the expected format
+      const transformedPosts: BlogPost[] = convexPosts.map(post => ({
+        title: post.title,
+        excerpt: post.excerpt,
+        date: post.publishedDate,
+        readTime: post.readTime,
+        slug: post.slug,
+        category: post.category,
+        link: post.externalLink ?? "",
+      }))
+
+      setAllPosts(transformedPosts)
+      setCurrentPosts(transformedPosts.slice(0, postsPerPage))
+      setMobilePosts(transformedPosts.slice(0, postsPerPage)) // Initialize mobile posts
+      setLoading(false)
+    }
+  }, [convexPosts])
 
   const totalPages = Math.ceil(allPosts.length / postsPerPage)
   const hasNextPage = currentPage < totalPages
@@ -86,7 +95,7 @@ export function StaticBlogSection() {
           <div className="flex flex-col items-center text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
             <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px]">
-              Thoughts on UX design, frontend development, and the intersection of design and technology.
+              Thoughts on UX design, AI, frontend development, and the intersection of design and technology.
             </p>
           </div>
           
@@ -140,7 +149,7 @@ export function StaticBlogSection() {
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-grey-900 dark:text-grey-50">Latest Insights</h2>
           <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px]">
-            Thoughts on UX design, frontend development, and the intersection of design and technology.
+            Thoughts on UX design, AI, frontend development, and the intersection of design and technology.
           </p>
           {allPosts.length > 0 && (
             <p className="text-sm text-grey-600 dark:text-grey-300 mt-2">

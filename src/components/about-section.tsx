@@ -24,10 +24,10 @@ export function AboutSection() {
   ]
 
   const skills = [
-    { icon: MousePointer2, name: "AI-Powered IDEs", description: "Currently: Cursor + Windsurf" },
-    { icon: Code, name: "Component Libraries", description: "Currently: ShadCN + Next.js" },
-    { icon: TrendingUp, name: "Analytics & Testing", description: "Currently: PostHog + others" },
-    { icon: Sparkles, name: "AI Integration", description: "Workflow optimization tools" }
+    { icon: Sparkles, name: "Claude Code + MCPs", description: "Custom skills & MCP servers" },
+    { icon: Code, name: "AI SDKs", description: "Vercel AI SDK, CopilotKit, Mastra" },
+    { icon: MousePointer2, name: "AI UI Frameworks", description: "CopilotKit, Shadcn, A2UI, Gen UI" },
+    { icon: TrendingUp, name: "Analytics & Testing", description: "PostHog, Sentry.io + experimentation" }
   ]
 
   const achievements = [
@@ -60,7 +60,7 @@ export function AboutSection() {
             About Me
           </h2>
           <p className="text-lg md:text-xl text-grey-700 dark:text-grey-200 max-w-[600px] mx-auto">
-            Design Engineer specializing in rapid prototyping with modern AI-powered tools and conversion optimization through data-driven experimentation.
+            AI Developer specialized in healthcare — from Series A startups to big enterprise.
           </p>
         </div>
 
@@ -70,13 +70,15 @@ export function AboutSection() {
           <div className="lg:col-span-2">
             <div className="prose prose-lg max-w-none text-grey-800 dark:text-grey-100">
               <p className="mb-6 leading-relaxed">
-                I&apos;m a Design Engineer selected into <strong>Next AI</strong> (Canada&apos;s top AI accelerator with &lt;1% acceptance rate). 
-                I specialize in rapidly building prototypes using modern AI-powered development tools and component libraries, 
-                then optimizing conversions through comprehensive experimentation platforms.
+                Currently an AI Developer at <strong>Pfizer</strong>, building healthcare AI at enterprise scale.
+                Previously at <strong>Pocket Health</strong> (Series B), where I boosted sign-up conversions from 650K to 1.1M
+                through data-driven experimentation. Also selected into <strong>Next AI</strong> — Canada&apos;s top AI accelerator with &lt;1% acceptance rate.
               </p>
               <p className="mb-6 leading-relaxed">
-                At <strong>Pocket Health</strong> (Series B), I boosted sign-up conversions from 650K to 1.1M using advanced A/B testing and data-driven UX improvements. 
-                I build scalable <strong>React applications</strong> with reusable design system components for rapid iteration across any tech stack.
+                I build full-stack AI applications using <strong>Claude Code with custom MCPs & Skills</strong>, <strong>Mastra.ai</strong>,{" "}
+                <strong>Vercel AI SDK</strong>, and <strong>CopilotKit</strong> (A2UI & Gen UI).
+                I bring a design-forward approach to AI engineering — creating intelligent products that are
+                powerful, intuitive, and impact-driven.
               </p>
             </div>
 

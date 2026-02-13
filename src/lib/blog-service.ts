@@ -84,7 +84,7 @@ async function parseAllRSSItems(): Promise<BlogPost[]> {
   try {
     const feed = await parser.parseURL('https://blog.karanbalaji.com/rss.xml')
     
-    return feed.items.map((item) => {
+    return feed.items.map((item: any) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const content = (item as any)['content:encoded'] || (item as any).description || item.contentSnippet || ''
       const title = item.title || 'Untitled Post'
@@ -100,7 +100,7 @@ async function parseAllRSSItems(): Promise<BlogPost[]> {
         link: item.link || '#',
         content
       }
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
+    }).sort((a: BlogPost, b: BlogPost) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Sort by date descending
   } catch (error) {
     console.error('Error fetching RSS feed:', error)
     

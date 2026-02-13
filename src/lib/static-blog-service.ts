@@ -27,7 +27,7 @@ export async function generateStaticBlogData(): Promise<BlogPost[]> {
     const feed = await parser.parseURL('https://blog.karanbalaji.com/rss.xml')
     console.log(`✅ Found ${feed.items.length} blog posts`)
     
-    const posts = feed.items.map((item) => {
+    const posts = feed.items.map((item: any) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const content = (item as any)['content:encoded'] || (item as any).description || item.contentSnippet || ''
       const title = item.title || 'Untitled Post'
@@ -43,7 +43,7 @@ export async function generateStaticBlogData(): Promise<BlogPost[]> {
         link: item.link || '#',
         content
       }
-    }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    }).sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
     // Ensure public directory exists
     const publicDir = path.join(process.cwd(), 'public')
