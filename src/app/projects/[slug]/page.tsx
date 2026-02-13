@@ -126,10 +126,15 @@ export default async function ProjectPage({
 
 // Static params for build-time generation
 export async function generateStaticParams() {
-  const projects = await fetchQuery(api.projects.getProjects, {});
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  try {
+    const projects = await fetchQuery(api.projects.getProjects, {});
+    return projects.map((project) => ({
+      slug: project.slug,
+    }));
+  } catch {
+    // If Convex is unavailable at build time, pages render on-demand
+    return [];
+  }
 }
 
 // Optional: Add ISR revalidation
