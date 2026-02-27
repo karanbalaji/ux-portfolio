@@ -59,6 +59,16 @@ export default function TableOfContents({ tocData }: TableOfContentsProps) {
 
       if (current) {
         setActiveSection(current.id)
+        // Auto-expand parent section when scrolling into a subsection
+        if (current.type === 'sub') {
+          const parentId = current.parentId
+          setExpandedSections(prev => {
+            if (prev.has(parentId)) return prev
+            const newSet = new Set(prev)
+            newSet.add(parentId)
+            return newSet
+          })
+        }
       }
     }
 
@@ -93,6 +103,10 @@ export default function TableOfContents({ tocData }: TableOfContentsProps) {
       return newSet
     })
   }
+
+  const allFlatItems = tocData.flatMap(item => [item, ...item.subsections])
+  const activeIdx = allFlatItems.findIndex(item => item.id === activeSection)
+  const progressPercent = activeIdx === -1 ? 0 : Math.round((activeIdx + 1) / allFlatItems.length * 100)
 
   return (
     <div className="p-6 rounded-lg border border-grey-200 dark:border-grey-700 bg-grey-50 dark:bg-grey-800">
@@ -152,24 +166,12 @@ export default function TableOfContents({ tocData }: TableOfContentsProps) {
       <div className="mt-6 pt-4 border-t border-grey-200 dark:border-grey-600">
         <div className="flex justify-between text-xs text-grey-500 dark:text-grey-400 mb-2">
           <span>Progress</span>
-          <span>
-            {Math.round(
-              (tocData.flatMap(item => [item, ...item.subsections])
-                .findIndex(item => item.id === activeSection) + 1) /
-              tocData.flatMap(item => [item, ...item.subsections]).length * 100
-            )}%
-          </span>
+          <span>{progressPercent}%</span>
         </div>
         <div className="w-full bg-grey-200 dark:bg-grey-700 rounded-full h-2">
           <div
             className="bg-tertiary h-2 rounded-full transition-all duration-300"
-            style={{
-              width: `${(
-                (tocData.flatMap(item => [item, ...item.subsections])
-                  .findIndex(item => item.id === activeSection) + 1) /
-                tocData.flatMap(item => [item, ...item.subsections]).length
-              ) * 100}%`
-            }}
+            style={{ width: `${progressPercent}%` }}
           />
         </div>
       </div>

@@ -6,6 +6,8 @@ const withBundleAnalyzer = BundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Required for Mastra packages to work correctly in Next.js/Vercel
+  serverExternalPackages: ["@mastra/*", "@ag-ui/*"],
   // Removed output: 'export' to enable API routes on Vercel
   images: {
     remotePatterns: [

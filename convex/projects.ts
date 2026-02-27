@@ -99,3 +99,37 @@ export const deleteProject = mutation({
     return { success: true };
   },
 });
+
+export const searchProjects = query({
+  args: {
+    query: v.optional(v.string()),
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 10;
+    const searchQuery = args.query?.toLowerCase().trim();
+
+    const allProjects = await ctx.db
+      .query("projects")
+      .withIndex("by_order")
+      .collect();
+
+    if (!searchQuery) {
+      return allProjects.slice(0, limit);
+    }
+
+    const matchingProjects = allProjects.filter((project) => {
+      const titleMatch = project.title.toLowerCase().includes(searchQuery);
+      const descriptionMatch = project.description.toLowerCase().includes(searchQuery);
+      const slugMatch = project.slug.toLowerCase().includes(searchQuery);
+      
+      const sectionsMatch = project.sections.some((section) => 
+        section.content.toLowerCase().includes(searchQuery)
+      );
+
+      return titleMatch || descriptionMatch || slugMatch || sectionsMatch;
+    });
+
+    return matchingProjects.slice(0, limit);
+  },
+});

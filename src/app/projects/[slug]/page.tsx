@@ -57,6 +57,11 @@ export default async function ProjectPage({
     ? "PocketHealth.com"
     : "FintechToronto.com";
 
+  // Separate sections by rendering context (matching original static page layout)
+  const heroSection = project.sections.find(s => s.type === "hero");
+  const quickFactsSection = project.sections.find(s => s.type === "quick-facts");
+  const contentSections = project.sections.filter(s => s.type !== "hero" && s.type !== "quick-facts");
+
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
       <ReadingProgress />
@@ -68,6 +73,11 @@ export default async function ProjectPage({
         githubUrl={project.githubUrl}
       />
 
+      {/* Hero - full width, outside container (matches original static layout) */}
+      {heroSection && (
+        <SectionRenderer type={heroSection.type} content={heroSection.content} />
+      )}
+
       {/* Mobile Table of Contents */}
       <MobileTableOfContents items={project.toc} />
 
@@ -75,19 +85,26 @@ export default async function ProjectPage({
         {/* Breadcrumbs */}
         <Breadcrumbs />
 
+        {/* Quick Facts - inside container, before the TOC grid */}
+        {quickFactsSection && (
+          <div className="mb-12">
+            <SectionRenderer type={quickFactsSection.type} content={quickFactsSection.content} />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10">
           <div className="hidden lg:block sticky top-20 self-start">
             <TableOfContents tocData={project.toc} />
           </div>
 
           <div className="space-y-8">
-            {project.sections.map((section, index) => (
+            {contentSections.map((section, index) => (
               <div key={`${section.type}-${index}`}>
                 <SectionRenderer
                   type={section.type}
                   content={section.content}
                 />
-                {index < project.sections.length - 1 && (
+                {index < contentSections.length - 1 && (
                   <SectionDivider variant={index % 2 === 0 ? "gradient" : "dots"} />
                 )}
               </div>

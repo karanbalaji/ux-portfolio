@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ChevronDown, ChevronUp, ChevronRight, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -15,12 +15,64 @@ interface TocItem {
 
 interface MobileTableOfContentsProps {
   items: TocItem[]
-  activeSection?: string
 }
 
-export function MobileTableOfContents({ items, activeSection }: MobileTableOfContentsProps) {
+export function MobileTableOfContents({ items }: MobileTableOfContentsProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set())
+  const [activeSection, setActiveSection] = useState<string>("")
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = items.flatMap(item => [
+        { id: item.id, element: document.getElementById(item.id), type: 'main' as const },
+        ...(item.subsections || []).map(sub => ({
+          id: sub.id,
+          element: document.getElementById(sub.id),
+          type: 'sub' as const,
+          parentId: item.id
+        }))
+      ]).filter(section => section.element)
+
+      let current = null
+
+      for (const section of sections) {
+        const rect = section.element!.getBoundingClientRect()
+        if (rect.top <= 120 && rect.bottom >= 60) {
+          current = section
+          break
+        }
+      }
+
+      if (!current) {
+        const sectionsAboveFold = sections.filter(section => {
+          const rect = section.element!.getBoundingClientRect()
+          return rect.top <= 120
+        })
+        if (sectionsAboveFold.length > 0) {
+          current = sectionsAboveFold[sectionsAboveFold.length - 1]
+        }
+      }
+
+      if (current) {
+        setActiveSection(current.id)
+        if (current.type === 'sub') {
+          const parentId = current.parentId
+          setExpandedSections(prev => {
+            if (prev.has(parentId)) return prev
+            const newSet = new Set(prev)
+            newSet.add(parentId)
+            return newSet
+          })
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [items])
 
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -124,30 +176,25 @@ export function MobileTableOfContents({ items, activeSection }: MobileTableOfCon
               </div>
               
               {/* Progress indicator for mobile */}
-              <div className="mt-4 pt-4 border-t border-border">
-                <div className="flex justify-between text-xs text-muted-foreground mb-2">
-                  <span>Reading Progress</span>
-                  <span>
-                    {Math.round(
-                      (items.flatMap(item => [item, ...(item.subsections || [])])
-                        .findIndex(item => item.id === activeSection) + 1) / 
-                      items.flatMap(item => [item, ...(item.subsections || [])]).length * 100
-                    )}%
-                  </span>
-                </div>
-                <div className="w-full bg-muted rounded-full h-2">
-                  <div 
-                    className="bg-primary h-2 rounded-full transition-all duration-300"
-                    style={{ 
-                      width: `${(
-                        (items.flatMap(item => [item, ...(item.subsections || [])])
-                          .findIndex(item => item.id === activeSection) + 1) / 
-                        items.flatMap(item => [item, ...(item.subsections || [])]).length
-                      ) * 100}%` 
-                    }}
-                  />
-                </div>
-              </div>
+              {(() => {
+                const allFlatItems = items.flatMap(item => [item, ...(item.subsections || [])])
+                const activeIdx = allFlatItems.findIndex(item => item.id === activeSection)
+                const progressPercent = activeIdx === -1 ? 0 : Math.round((activeIdx + 1) / allFlatItems.length * 100)
+                return (
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-2">
+                      <span>Reading Progress</span>
+                      <span>{progressPercent}%</span>
+                    </div>
+                    <div className="w-full bg-muted rounded-full h-2">
+                      <div
+                        className="bg-primary h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${progressPercent}%` }}
+                      />
+                    </div>
+                  </div>
+                )
+              })()}
             </div>
           )}
         </div>
