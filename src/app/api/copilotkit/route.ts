@@ -8,7 +8,6 @@ import { mastra } from "@/mastra";
 import { NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {
-  // Wire the Mastra portfolioAgent as a CopilotKit CoAgent via AG-UI protocol
   const portfolioAgent = MastraAgent.getLocalAgent({
     mastra,
     agentId: "portfolioAgent",
@@ -16,7 +15,12 @@ export const POST = async (req: NextRequest) => {
   });
 
   const runtime = new CopilotRuntime({
-    agents: { portfolioAgent: portfolioAgent as any },
+    agents: {
+      portfolioAgent: {
+        ...portfolioAgent,
+        messages: portfolioAgent.messages || [],
+      } as any,
+    },
   });
 
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
