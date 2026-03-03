@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useClerk, useUser } from "@clerk/nextjs";
-import { LayoutDashboard, FileText, Newspaper, Mail, LogOut } from "lucide-react";
+import { LayoutDashboard, FileText, Newspaper, Mail, LogOut, Link2, Inbox } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
@@ -12,48 +12,41 @@ const navigation = [
   { name: "Projects", href: "/admin/projects", icon: FileText },
   { name: "Blog Posts", href: "/admin/blog", icon: Newspaper },
   { name: "Contacts", href: "/admin/contacts", icon: Mail },
+  { name: "Referrals", href: "/admin/referrals", icon: Link2 },
+  { name: "Submissions", href: "/admin/referrals/submissions", icon: Inbox },
 ];
 
-export function AdminSidebar() {
+export default function AdminSidebar() {
   const pathname = usePathname();
   const { signOut } = useClerk();
   const { user } = useUser();
 
-  if (pathname === "/admin/login") {
-    return null;
-  }
-
   return (
-    <div className="w-64 bg-card border-r border-border flex flex-col h-full">
-      {/* Logo */}
-      <div className="p-6 border-b border-border">
-        <h1 className="text-xl font-bold font-sans">Admin Panel</h1>
+    <div className="w-64 bg-card border-r border-border flex flex-col h-screen sticky top-0">
+      <div className="p-4 border-b border-border">
+        <h2 className="text-lg font-semibold">Admin Panel</h2>
         {user && (
-          <p className="text-sm text-muted-foreground mt-1">
-            {user.primaryEmailAddress?.emailAddress}
-          </p>
+          <p className="text-sm text-muted-foreground">{user.emailAddresses[0]?.emailAddress}</p>
         )}
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">
         {navigation.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
-
+          const isActive = pathname === item.href;
           return (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors font-sans",
+                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
                 isActive
                   ? "bg-primary text-primary-foreground"
-                  : "hover:bg-accent text-foreground"
+                  : "hover:bg-muted text-muted-foreground hover:text-foreground"
               )}
             >
-              <Icon className="h-5 w-5" />
-              <span>{item.name}</span>
+              <Icon className="h-4 w-4" />
+              {item.name}
             </Link>
           );
         })}

@@ -13,6 +13,8 @@ import type * as contacts from "../contacts.js";
 import type * as crons from "../crons.js";
 import type * as http from "../http.js";
 import type * as projects from "../projects.js";
+import type * as referral_submissions from "../referral_submissions.js";
+import type * as referrals from "../referrals.js";
 import type * as seedBlog from "../seedBlog.js";
 import type * as seedProjects from "../seedProjects.js";
 import type * as syncBlog from "../syncBlog.js";
@@ -29,6 +31,8 @@ declare const fullApi: ApiFromModules<{
   crons: typeof crons;
   http: typeof http;
   projects: typeof projects;
+  referral_submissions: typeof referral_submissions;
+  referrals: typeof referrals;
   seedBlog: typeof seedBlog;
   seedProjects: typeof seedProjects;
   syncBlog: typeof syncBlog;
