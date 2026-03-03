@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#projects", label: "Projects" },
   { href: "#blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
+  { href: "/referrals", label: "Referrals" },
 ]
 
 export function Navbar() {
@@ -30,6 +31,10 @@ export function Navbar() {
   }, [])
 
   const handleScroll = (id: string) => {
+    if (id === "/referrals") {
+      window.location.href = "/referrals";
+      return;
+    }
     const element = document.getElementById(id.replace("#", ""))
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
@@ -51,8 +56,12 @@ export function Navbar() {
               href={link.href}
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={(e) => {
-                e.preventDefault()
-                handleScroll(link.href)
+                if (link.href.startsWith("/")) {
+                  window.location.href = link.href;
+                } else {
+                  e.preventDefault()
+                  handleScroll(link.href)
+                }
               }}
             >
               {link.label}
